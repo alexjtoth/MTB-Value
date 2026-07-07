@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { bikes } from "../../data/bike";
+import { supabase } from "../../lib/supabase";
 
 export default async function BikePage({
   params,
@@ -8,38 +8,69 @@ export default async function BikePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const bike = bikes.find((bike) => bike.slug === slug);
 
-  if (!bike) notFound();
+  const { data: bike, error } = await supabase
+    .from("bike_versions")
+    .select(`
+      *,
+      bike_models (
+        name,
+        slug,
+        category,
+        brands (
+          name
+        )
+      )
+    `)
+    .eq("id", slug)
+    .single();
+
+  if (error || !bike) {
+    notFound();
+  }
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <Link href="/" className="text-sm text-lime-400 hover:text-lime-300">
+      <div className="mx-auto max-w-5xl px-6 py-12">
+        <Link
+          href="/"
+          className="text-sm text-lime-400 hover:text-lime-300"
+        >
           ← Back to Search
         </Link>
 
         <section className="mt-10 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-8">
-            <div className="mb-8 flex h-72 items-center justify-center rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-800 to-zinc-950 text-zinc-500">
-              Bike Image Placeholder
-            </div>
+            {bike.image_url ? (
+  <img
+    src={bike.image_url}
+    alt={`${bike.year} ${bike.bike_models.brands.name} ${bike.bike_models.name}`}
+    className="h-72 w-full rounded-2xl border border-zinc-800 object-cover"
+  />
+) : (
+  <div className="flex h-72 items-center justify-center rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-800 to-zinc-950 text-zinc-500">
+    Bike Image Placeholder
+  </div>
+)}
 
-            <p className="text-sm uppercase tracking-[0.3em] text-lime-400">
-              {bike.category}
+            <p className="mt-8 uppercase tracking-[0.3em] text-lime-400">
+              {bike.bike_models.category}
             </p>
 
             <h1 className="mt-4 text-5xl font-bold">
-              {bike.year} {bike.brand} {bike.model}
+              {bike.year} {bike.bike_models.brands.name} {bike.bike_models.name}
             </h1>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <Stat label="Original MSRP" value={bike.msrp} />
-              <Stat label="Depreciation" value={bike.depreciation} />
-              <Stat label="Travel" value={bike.travel} />
-              <Stat label="Wheel Size" value={bike.wheelSize} />
-              <Stat label="Frame" value={bike.frame} />
-              <Stat label="Confidence" value={bike.confidence} />
+              <Stat label="Original MSRP" value={`$${Number(bike.msrp).toLocaleString()}`} />
+              <Stat label="Depreciation" value="--" />
+              <Stat
+                label="Travel"
+                value={`${bike.front_travel_mm}/${bike.rear_travel_mm} mm`}
+              />
+              <Stat label="Wheel Size" value={bike.wheel_size} />
+              <Stat label="Frame" value={bike.frame_material} />
+              <Stat label="Confidence" value="High" />
             </div>
           </div>
 
@@ -48,19 +79,25 @@ export default async function BikePage({
               <p className="text-sm font-semibold uppercase">
                 Estimated Market Value
               </p>
-              <p className="mt-2 text-5xl font-bold">{bike.value}</p>
+
+              <p className="mt-2 text-5xl font-bold">
+                ${Number(bike.msrp).toLocaleString()}
+              </p>
+
               <p className="mt-4 text-sm font-medium">
                 Based on comparable used bike sales and market trends.
               </p>
             </div>
 
             <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6">
-              <h2 className="text-xl font-semibold">Market Pulse</h2>
+              <h2 className="text-xl font-semibold">
+                Market Pulse
+              </h2>
 
               <div className="mt-5 space-y-4">
-                <MiniStat label="90-Day Trend" value={bike.trend} />
-                <MiniStat label="Demand" value={bike.demand} />
-                <MiniStat label="Avg. Days to Sell" value="11 days" />
+                <MiniStat label="30-Day Trend" value="--" />
+                <MiniStat label="Demand" value="--" />
+                <MiniStat label="Avg. Days to Sell" value="--" />
               </div>
             </div>
           </aside>
@@ -68,7 +105,9 @@ export default async function BikePage({
 
         <section className="mt-8 grid gap-8 lg:grid-cols-2">
           <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6">
-            <h2 className="text-xl font-semibold">Price History</h2>
+            <h2 className="text-xl font-semibold">
+              Price History
+            </h2>
 
             <div className="mt-6 flex h-56 items-end gap-4 rounded-2xl border border-zinc-800 bg-zinc-950 p-5">
               <Bar height="35%" label="2023" />
@@ -79,20 +118,21 @@ export default async function BikePage({
           </div>
 
           <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6">
-            <h2 className="text-xl font-semibold">Recent Comparable Sales</h2>
+            <h2 className="text-xl font-semibold">
+              Recent Comparable Sales
+            </h2>
 
-            <div className="mt-6 space-y-4">
+            <div className="mt-5 space-y-3">
               <Sale location="Colorado" price="$3,700" date="June 2026" />
               <Sale location="Utah" price="$3,550" date="May 2026" />
-              <Sale location="California" price="$3,600" date="April 2026" />
+              <Sale location="California" price="$3,680" date="April 2026" />
             </div>
           </div>
         </section>
       </div>
     </main>
   );
-}
-
+};
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5">

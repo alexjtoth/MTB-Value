@@ -6,7 +6,7 @@ interface BikeGridProps {
 
 export function BikeGrid({ bikes }: BikeGridProps) {
   return (
-    <div className="space-y-6">
+    <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
       {bikes.map((bike) => (
         <BikeCard
           key={bike.id}

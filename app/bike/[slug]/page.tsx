@@ -2,13 +2,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../components/Navbar";
 import { supabase } from "../../lib/supabase";
+import {
+  geometryMatchScore,
+  geometryDifferences,
+} from "../../lib/geometrymatch";
 
 export default async function BikePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ size?: string }>;
 }) {
   const { slug } = await params;
+  const { size } = await searchParams;
 
   const { data: bike, error } = await supabase
     .from("bike_versions")
@@ -33,21 +40,20 @@ export default async function BikePage({
           model_year,
           msrp
         )
+      ),
+      bike_geometry (
+        id,
+        size,
+        reach_mm,
+        stack_mm,
+        wheelbase_mm,
+        chainstay_mm,
+        bb_drop_mm,
+        head_tube_angle,
+        seat_tube_angle,
+        seat_tube_mm,
+        head_tube_mm
       )
-        ,
-bike_geometry (
-  id,
-  size,
-  reach_mm,
-  stack_mm,
-  wheelbase_mm,
-  chainstay_mm,
-  bb_drop_mm,
-  head_tube_angle,
-  seat_tube_angle,
-  seat_tube_mm,
-  head_tube_mm
-)
     `)
     .eq("id", slug)
     .single();
@@ -81,11 +87,91 @@ bike_geometry (
       ? Math.round((estimatedMarketValue / msrp) * 100)
       : null;
 
-  const depreciation =
-    valueRetained != null ? 100 - valueRetained : null;
+  const depreciation = valueRetained != null ? 100 - valueRetained : null;
 
   const components = bike.bike_version_components ?? [];
   const geometry = bike.bike_geometry ?? [];
+
+  const selectedGeometry =
+    geometry.find((geo: any) => geo.size === size) ?? geometry[0] ?? null;
+
+  const { data: allBikes } = await supabase
+    .from("bike_versions")
+    .select(`
+      *,
+      bike_models (
+        name,
+        slug,
+        category,
+        brands (
+          name
+        )
+      ),
+      bike_geometry (
+        id,
+        size,
+        reach_mm,
+        stack_mm,
+        wheelbase_mm,
+        chainstay_mm,
+        bb_drop_mm,
+        head_tube_angle,
+        seat_tube_angle,
+        seat_tube_mm,
+        head_tube_mm
+      )
+    `)
+    .neq("id", bike.id);
+
+  const geometryMatches =
+    selectedGeometry && allBikes
+      ? allBikes
+          .map((otherBike: any) => {
+            const bestGeometryMatch = otherBike.bike_geometry
+              ?.map((otherGeometry: any) => {
+                const currentBikeGeometry = {
+                  ...selectedGeometry,
+                  front_travel_mm: bike.front_travel_mm,
+                  rear_travel_mm: bike.rear_travel_mm,
+                };
+
+                const comparisonBikeGeometry = {
+                  ...otherGeometry,
+                  front_travel_mm: otherBike.front_travel_mm,
+                  rear_travel_mm: otherBike.rear_travel_mm,
+                };
+
+                const score = geometryMatchScore(
+                  currentBikeGeometry,
+                  comparisonBikeGeometry
+                );
+
+                const differences = geometryDifferences(
+                  currentBikeGeometry,
+                  comparisonBikeGeometry
+                );
+
+                return {
+                  geometry: otherGeometry,
+                  score,
+                  differences,
+                };
+              })
+              .sort((a: any, b: any) => b.score - a.score)[0];
+
+            if (!bestGeometryMatch) return null;
+
+            return {
+              bike: otherBike,
+              geometry: bestGeometryMatch.geometry,
+              score: bestGeometryMatch.score,
+              differences: bestGeometryMatch.differences,
+            };
+          })
+          .filter(Boolean)
+          .sort((a: any, b: any) => b.score - a.score)
+          .slice(0, 4)
+      : [];
 
   return (
     <>
@@ -93,7 +179,10 @@ bike_geometry (
 
       <main className="min-h-screen bg-zinc-950 text-white">
         <div className="mx-auto max-w-6xl px-6 py-10">
-          <Link href="/" className="text-sm font-medium text-lime-400 hover:text-lime-300">
+          <Link
+            href="/"
+            className="text-sm font-medium text-lime-400 hover:text-lime-300"
+          >
             ← Back to search
           </Link>
 
@@ -130,29 +219,41 @@ bike_geometry (
                 <p className="text-xs font-bold uppercase tracking-[0.25em] text-lime-400">
                   Estimated Market Value
                 </p>
-                
 
-                <p className="mt-3 text-5xl font-black text-lime-400">{value}</p>
+                <p className="mt-3 text-5xl font-black text-lime-400">
+                  {value}
+                </p>
 
                 <div className="mt-6 h-px bg-lime-400/20" />
 
                 <p className="mt-6 text-sm leading-7 text-zinc-300">
-                  Early estimate based on age, MSRP, and simple depreciation until marketplace listings and comparable sales are introduced.
+                  Early estimate based on age, MSRP, and simple depreciation
+                  until marketplace listings and comparable sales are
+                  introduced.
                 </p>
-                                <Link
-  href={`/compare?bike=${bike.id}`}
-  className="mt-6 flex w-full items-center justify-center rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black transition hover:bg-lime-300"
->
-  Compare Bike
-</Link>
+
+                <Link
+                  href={`/compare?bike=${bike.id}`}
+                  className="mt-6 flex w-full items-center justify-center rounded-xl bg-lime-400 px-5 py-3 font-semibold text-black transition hover:bg-lime-300"
+                >
+                  Compare Bike
+                </Link>
               </div>
             </div>
           </section>
 
           <section className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Stat label="Original MSRP" value={msrpValue} />
-            <Stat label="Travel" value={`${bike.front_travel_mm ?? "--"}/${bike.rear_travel_mm ?? "--"} mm`} />
-            <Stat label="Wheel Size" value={bike.wheel_size ? `${bike.wheel_size}` : "--"} />
+            <Stat
+              label="Travel"
+              value={`${bike.front_travel_mm ?? "--"}/${
+                bike.rear_travel_mm ?? "--"
+              } mm`}
+            />
+            <Stat
+              label="Wheel Size"
+              value={bike.wheel_size ? `${bike.wheel_size}` : "--"}
+            />
             <Stat label="Frame" value={bike.frame_material ?? "--"} />
           </section>
 
@@ -198,91 +299,214 @@ bike_geometry (
             </section>
           )}
 
-<section className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-900 p-7">
-  <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-    <div>
-      <p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-400">
-        Deal Score
-      </p>
+          <section className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-900 p-7">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-400">
+                  Deal Score
+                </p>
 
-      <h2 className="mt-2 text-3xl font-bold">
-        Listing analysis coming soon
-      </h2>
+                <h2 className="mt-2 text-3xl font-bold">
+                  Listing analysis coming soon
+                </h2>
 
-      <p className="mt-3 max-w-2xl text-zinc-400">
-        MTB Index will compare a seller’s asking price against the estimated
-        market value to flag great deals, fair prices, and overpriced listings.
-      </p>
-    </div>
+                <p className="mt-3 max-w-2xl text-zinc-400">
+                  MTB Index will compare a seller’s asking price against the
+                  estimated market value to flag great deals, fair prices, and
+                  overpriced listings.
+                </p>
+              </div>
 
-    <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 text-center">
-      <p className="text-sm text-zinc-500">Status</p>
-      <p className="mt-2 text-2xl font-bold text-lime-400">Coming Soon</p>
-    </div>
-  </div>
-</section>
-<section className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-900 p-7">
-  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-400">
-    Pricing Methodology
-  </p>
+              <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 text-center">
+                <p className="text-sm text-zinc-500">Status</p>
+                <p className="mt-2 text-2xl font-bold text-lime-400">
+                  Coming Soon
+                </p>
+              </div>
+            </div>
+          </section>
 
-  <h2 className="mt-2 text-3xl font-bold">
-    How this estimate is calculated
-  </h2>
+          <section className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-900 p-7">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-400">
+              Pricing Methodology
+            </p>
 
-  <div className="mt-6 grid gap-4 md:grid-cols-3">
-    <MethodCard
-      title="Original MSRP"
-      description="Uses the bike’s factory MSRP as the starting value."
-    />
+            <h2 className="mt-2 text-3xl font-bold">
+              How this estimate is calculated
+            </h2>
 
-    <MethodCard
-      title="Age Adjustment"
-      description="Applies a simple depreciation curve based on model year."
-    />
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <MethodCard
+                title="Original MSRP"
+                description="Uses the bike’s factory MSRP as the starting value."
+              />
 
-    <MethodCard
-      title="Market Data Coming"
-      description="Future versions will include real listings and comparable sales."
-    />
-  </div>
-</section>
-<section className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-900 p-7">
-  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-400">
-    Geometry
-  </p>
+              <MethodCard
+                title="Age Adjustment"
+                description="Applies a simple depreciation curve based on model year."
+              />
 
-  <h2 className="mt-2 text-3xl font-bold">
-    Frame Geometry
-  </h2>
+              <MethodCard
+                title="Market Data Coming"
+                description="Future versions will include real listings and comparable sales."
+              />
+            </div>
+          </section>
 
-  <div className="mt-6">
-    <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-  {geometry.map((geo: any) => (
-    <div
-      key={geo.id}
-      className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5"
-    >
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-xl font-bold">
-          Size {geo.size}
-        </h3>
-      </div>
+          <section className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-900 p-7">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-400">
+              Geometry
+            </p>
 
-      <div className="space-y-2">
-        <GeometryRow label="Reach" value={`${geo.reach_mm} mm`} />
-        <GeometryRow label="Stack" value={`${geo.stack_mm} mm`} />
-        <GeometryRow label="Wheelbase" value={`${geo.wheelbase_mm} mm`} />
-        <GeometryRow label="Chainstay" value={`${geo.chainstay_mm} mm`} />
-        <GeometryRow label="BB Drop" value={`${geo.bb_drop_mm} mm`} />
-        <GeometryRow label="HT Angle" value={`${geo.head_tube_angle}°`} />
-        <GeometryRow label="ST Angle" value={`${geo.seat_tube_angle}°`} />
-      </div>
-    </div>
-  ))}
-</div>
-  </div>
-</section>
+            <h2 className="mt-2 text-3xl font-bold">Frame Geometry</h2>
+
+            <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {geometry.map((geo: any) => (
+                <div
+                  key={geo.id}
+                  className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5"
+                >
+                  <div className="mb-4 flex items-center justify-between">
+                    <h3 className="text-xl font-bold">Size {geo.size}</h3>
+                  </div>
+
+                  <div className="space-y-2">
+                    <GeometryRow label="Reach" value={`${geo.reach_mm} mm`} />
+                    <GeometryRow label="Stack" value={`${geo.stack_mm} mm`} />
+                    <GeometryRow
+                      label="Wheelbase"
+                      value={`${geo.wheelbase_mm} mm`}
+                    />
+                    <GeometryRow
+                      label="Chainstay"
+                      value={`${geo.chainstay_mm} mm`}
+                    />
+                    <GeometryRow
+                      label="BB Drop"
+                      value={`${geo.bb_drop_mm} mm`}
+                    />
+                    <GeometryRow
+                      label="HT Angle"
+                      value={`${geo.head_tube_angle}°`}
+                    />
+                    <GeometryRow
+                      label="ST Angle"
+                      value={`${geo.seat_tube_angle}°`}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {geometryMatches.length > 0 && selectedGeometry && (
+            <section className="mt-8 rounded-3xl border border-zinc-800 bg-zinc-900 p-7">
+              <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-lime-400">
+                    Similar Bikes
+                  </p>
+
+                  <h2 className="mt-2 text-3xl font-bold">
+                    Closest geometry matches
+                  </h2>
+
+                  <p className="mt-3 max-w-2xl text-zinc-400">
+                    Showing bikes most similar to the {selectedGeometry.size}{" "}
+                    size of this bike using actual geometry measurements.
+                  </p>
+                </div>
+              </div>
+
+              {geometry.length > 0 && (
+                <div className="mt-6">
+                  <p className="mb-3 text-sm text-zinc-400">
+                    Comparing size
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {geometry.map((geo: any) => (
+                      <Link
+                        key={geo.id}
+                        href={`?size=${geo.size}`}
+                        className={`rounded-full border px-4 py-2 text-sm ${
+                          selectedGeometry?.size === geo.size
+                            ? "border-lime-400 bg-lime-400 text-black"
+                            : "border-zinc-700 text-zinc-300 hover:border-lime-400"
+                        }`}
+                      >
+                        {geo.size}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                {geometryMatches.map((match: any) => {
+                  const matchBike = match.bike;
+                  const matchBrand =
+                    matchBike.bike_models?.brands?.name ?? "Unknown";
+                  const matchModel =
+                    matchBike.bike_models?.name ?? "Unknown";
+
+                  return (
+                    <div
+                      key={matchBike.id}
+                      className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5"
+                    >
+                      <p className="text-4xl font-black text-lime-400">
+                        {match.score}% Match
+                      </p>
+
+                      <p className="mt-3 text-lg font-bold">
+                        {matchBike.year} {matchBrand} {matchModel}
+                      </p>
+
+                      <p className="mt-1 text-sm text-zinc-500">
+                        Best matching size
+                      </p>
+
+                      <p className="mt-1 text-lg font-semibold text-white">
+                        {match.geometry.size}
+                      </p>
+
+                      <div className="mt-5 space-y-2 border-t border-zinc-800 pt-4">
+                        <DifferenceRow
+                          label="Reach"
+                          value={`${Math.round(match.differences.reach)} mm`}
+                        />
+
+                        <DifferenceRow
+                          label="Stack"
+                          value={`${Math.round(match.differences.stack)} mm`}
+                        />
+
+                        <DifferenceRow
+                          label="Wheelbase"
+                          value={`${Math.round(
+                            match.differences.wheelbase
+                          )} mm`}
+                        />
+                      </div>
+
+                      <Link
+                        href={`/compare?bike=${bike.id}&compare=${
+                          matchBike.id
+                        }&sizeA=${selectedGeometry.size}&sizeB=${
+                          match.geometry.size
+                        }`}
+                        className="mt-5 flex rounded-xl border border-lime-400/40 px-4 py-3 text-sm font-semibold text-lime-400 transition hover:bg-lime-400 hover:text-black"
+                      >
+                        Compare Bikes →
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
           <section className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-7">
               <h2 className="text-2xl font-bold">Bike Details</h2>
@@ -292,10 +516,22 @@ bike_geometry (
                 <DetailRow label="Model" value={model} />
                 <DetailRow label="Year" value={bike.year?.toString() ?? "--"} />
                 <DetailRow label="Category" value={category} />
-                <DetailRow label="Front Travel" value={`${bike.front_travel_mm ?? "--"} mm`} />
-                <DetailRow label="Rear Travel" value={`${bike.rear_travel_mm ?? "--"} mm`} />
-                <DetailRow label="Wheel Size" value={bike.wheel_size ? `${bike.wheel_size}` : "--"} />
-                <DetailRow label="Frame Material" value={bike.frame_material ?? "--"} />
+                <DetailRow
+                  label="Front Travel"
+                  value={`${bike.front_travel_mm ?? "--"} mm`}
+                />
+                <DetailRow
+                  label="Rear Travel"
+                  value={`${bike.rear_travel_mm ?? "--"} mm`}
+                />
+                <DetailRow
+                  label="Wheel Size"
+                  value={bike.wheel_size ? `${bike.wheel_size}` : "--"}
+                />
+                <DetailRow
+                  label="Frame Material"
+                  value={bike.frame_material ?? "--"}
+                />
               </div>
             </div>
 
@@ -365,6 +601,7 @@ function ComponentRow({
     </div>
   );
 }
+
 function MethodCard({
   title,
   description,
@@ -375,12 +612,11 @@ function MethodCard({
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5">
       <p className="font-semibold text-white">{title}</p>
-      <p className="mt-3 text-sm leading-6 text-zinc-400">
-        {description}
-      </p>
+      <p className="mt-3 text-sm leading-6 text-zinc-400">{description}</p>
     </div>
   );
 }
+
 function GeometryRow({
   label,
   value,
@@ -390,6 +626,21 @@ function GeometryRow({
 }) {
   return (
     <div className="flex items-center justify-between border-b border-zinc-800 py-2 text-sm">
+      <span className="text-zinc-500">{label}</span>
+      <span className="font-medium text-white">{value}</span>
+    </div>
+  );
+}
+
+function DifferenceRow({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="flex items-center justify-between text-sm">
       <span className="text-zinc-500">{label}</span>
       <span className="font-medium text-white">{value}</span>
     </div>

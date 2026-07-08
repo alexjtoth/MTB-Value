@@ -123,8 +123,9 @@ export function rideDNA(current: GeometryInput, other: GeometryInput) {
       specScore(current.head_tube_angle, other.head_tube_angle, 1),
     ]),
     suspension: average([
-      specScore(current.rear_travel_mm, other.rear_travel_mm, 20),
-    ]),
+  specScore(current.front_travel_mm, other.front_travel_mm, 20),
+  specScore(current.rear_travel_mm, other.rear_travel_mm, 20),
+]),
   };
 }
 
@@ -164,4 +165,48 @@ function diff(current: GeometryValue, other: GeometryValue) {
   }
 
   return otherValue - currentValue;
+}
+
+export function getSimilarBikeMatches({
+  currentBikeId,
+  bikes,
+  geometry,
+  limit = 4,
+}: {
+  currentBikeId: string;
+  bikes: any[];
+  geometry: any[];
+  limit?: number;
+}) {
+  const currentGeometry = geometry.find(
+    (geo) => geo.bike_version_id === currentBikeId
+  );
+
+  if (!currentGeometry) return [];
+
+  return bikes
+    .filter((bike) => bike.id !== currentBikeId)
+    .map((bike) => {
+      const bikeGeometries = geometry.filter(
+        (geo) => geo.bike_version_id === bike.id
+      );
+
+      const bestMatch = bikeGeometries
+        .map((geo) => ({
+          geometry: geo,
+          score: geometryMatchScore(currentGeometry, geo),
+        }))
+        .sort((a, b) => b.score - a.score)[0];
+
+      if (!bestMatch) return null;
+
+      return {
+        bike,
+        size: bestMatch.geometry.size,
+        score: bestMatch.score,
+      };
+    })
+    .filter(Boolean)
+    .sort((a: any, b: any) => b.score - a.score)
+    .slice(0, limit);
 }

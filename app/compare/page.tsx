@@ -74,7 +74,44 @@ export default async function ComparePage({
       : null;
 
   const dna =
-    selectedGeoA && selectedGeoB ? rideDNA(selectedGeoA, selectedGeoB) : null;
+    selectedGeoA && selectedGeoB && bikeA && bikeB
+      ? rideDNA(
+          {
+            ...selectedGeoA,
+            front_travel_mm: bikeA.front_travel_mm,
+            rear_travel_mm: bikeA.rear_travel_mm,
+          },
+          {
+            ...selectedGeoB,
+            front_travel_mm: bikeB.front_travel_mm,
+            rear_travel_mm: bikeB.rear_travel_mm,
+          }
+        )
+      : null;
+
+  const bestMatchingSize =
+  selectedGeoA && geometryB.length > 0
+    ? geometryB
+        .map((geo) => {
+          const score = geometryMatchScore(selectedGeoA, geo);
+
+          return {
+            geometry: geo,
+            size: geo.size,
+            score,
+            isCurrentlySelected: geo.size === selectedSizeB,
+          };
+        })
+        .sort((a, b) => b.score - a.score)[0]
+    : null;
+
+const selectedSizeBIsBest =
+  bestMatchingSize?.size === selectedSizeB;
+
+  const geometryVerdict =
+    geometryDiffs && matchScore !== null
+      ? getGeometryVerdict(geometryDiffs, matchScore)
+      : null;
 
   const availableBikes =
     bikes?.filter((bike) => bike.id !== bikeAId && bike.id !== bikeBId) ?? [];
@@ -164,8 +201,8 @@ export default async function ComparePage({
       title: "Weight & Suspension",
       rows: [
         ["Weight", "claimed_weight_lbs", " lb", "lower", "bike"],
-        ["Fork Travel", "fork_travel_mm", "mm", "higher", "geo"],
-        ["Rear Travel", "rear_travel_mm", "mm", "higher", "geo"],
+        ["Front Travel", "front_travel_mm", "mm", "higher", "bike"],
+        ["Rear Travel", "rear_travel_mm", "mm", "higher", "bike"],
       ],
     },
     {
@@ -283,9 +320,9 @@ export default async function ComparePage({
                     Geometry Match
                   </p>
 
-                  <h2 className="mt-3 text-6xl font-black text-orange-400">
-                    {matchScore}%
-                  </h2>
+                  <h2 className={`mt-3 text-6xl font-black ${getScoreClass(matchScore)}`}>
+  {matchScore}%
+</h2>
 
                   <p className="mt-3 text-xl font-semibold">
                     {getMatchLabel(matchScore)}
@@ -296,36 +333,138 @@ export default async function ComparePage({
                     {formatBikeName(bikeB)} size {selectedSizeB || "—"}. Score
                     is based on actual geometry measurements.
                   </p>
+
+                  {geometryVerdict && (
+  <div className="mt-6 rounded-2xl border border-zinc-800 bg-zinc-950 p-5">
+    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400">
+      Ride Impression
+    </p>
+
+    <p className="mt-3 text-lg leading-8 text-zinc-200">
+      {geometryVerdict}
+    </p>
+  </div>
+)}
+
+                  {bestMatchingSize && (
+  <div className="mt-4 rounded-2xl border border-orange-500/30 bg-orange-500/10 p-4">
+    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400">
+      Smart Size Match
+    </p>
+
+    <p className="mt-2 text-4xl font-black text-white">
+      {bestMatchingSize.size}
+    </p>
+
+    <p className={`mt-2 text-2xl font-bold ${getScoreClass(bestMatchingSize.score)}`}>
+  {bestMatchingSize.score}% Match
+</p>
+
+<p className="mt-3 text-sm text-zinc-400">
+  Closest equivalent to your{" "}
+  <span className="font-semibold text-white">
+    {selectedSizeA || "—"}
+  </span>{" "}
+  on the {formatBikeName(bikeA)}.
+</p>
+
+    {!selectedSizeBIsBest && (
+      <Link
+        href={compareHref({
+          bike: bikeAId,
+          compare: bikeBId,
+          sizeA: selectedSizeA,
+          sizeB: bestMatchingSize.size,
+        })}
+        className="mt-4 inline-flex rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600"
+      >
+        Switch to best size
+      </Link>
+    )}
+
+    {selectedSizeBIsBest && (
+      <div className="mt-5 flex items-center gap-2 rounded-xl border border-green-500/20 bg-green-500/10 px-4 py-3">
+  <span className="text-lg">✓</span>
+
+  <div>
+    <p className="text-sm font-semibold text-green-400">
+      Recommended Size Selected
+    </p>
+
+    <p className="text-xs text-zinc-400">
+      You're already comparing the closest matching size.
+    </p>
+  </div>
+</div>
+    )}
+  </div>
+)}
+
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2">
                   <MatchDifference
                     label="Reach"
                     value={formatDifference(geometryDiffs.reach)}
+                    description={describeDifference(
+                      geometryDiffs.reach,
+                      "longer",
+                      "shorter"
+                    )}
                   />
                   <MatchDifference
                     label="Stack"
                     value={formatDifference(geometryDiffs.stack)}
+                    description={describeDifference(
+                      geometryDiffs.stack,
+                      "taller",
+                      "lower"
+                    )}
                   />
                   <MatchDifference
                     label="Wheelbase"
                     value={formatDifference(geometryDiffs.wheelbase)}
+                    description={describeDifference(
+                      geometryDiffs.wheelbase,
+                      "more stable",
+                      "more playful"
+                    )}
                   />
                   <MatchDifference
                     label="Chainstay"
                     value={formatDifference(geometryDiffs.chainstay)}
+                    description={describeDifference(
+                      geometryDiffs.chainstay,
+                      "longer rear end",
+                      "shorter rear end"
+                    )}
                   />
                   <MatchDifference
                     label="BB Drop"
                     value={formatDifference(geometryDiffs.bbDrop)}
+                    description={describeDifference(
+                      geometryDiffs.bbDrop,
+                      "lower bottom bracket",
+                      "higher bottom bracket"
+                    )}
                   />
                   <MatchDifference
                     label="Head Angle"
                     value={formatDifference(geometryDiffs.headAngle, "°")}
+                    description={describeDifference(
+                      geometryDiffs.headAngle,
+                      "steeper",
+                      "slacker"
+                    )}
                   />
                   <MatchDifference
                     label="Seat Angle"
                     value={formatDifference(geometryDiffs.seatAngle, "°")}
+                    description={describeDifference(
+                      geometryDiffs.seatAngle,
+                      "steeper climbing position",
+                      "slacker climbing position"
+                    )}
                   />
                 </div>
               </div>
@@ -343,7 +482,8 @@ export default async function ComparePage({
                     </p>
                   </div>
 
-                  <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  <div className="mt-5 grid gap-4 md:grid-cols-4">
+                    <RideDNACard label="Overall" value={matchScore} />
                     <RideDNACard label="Fit" value={dna.fit} />
                     <RideDNACard label="Handling" value={dna.handling} />
                     <RideDNACard label="Suspension" value={dna.suspension} />
@@ -392,10 +532,14 @@ export default async function ComparePage({
 
                       {section.rows.map(([label, key, suffix, mode, source]) => {
                         const valueA =
-                          source === "bike" ? bikeA?.[key] : selectedGeoA?.[key];
+                          source === "bike"
+                            ? bikeA?.[key]
+                            : selectedGeoA?.[key];
 
                         const valueB =
-                          source === "bike" ? bikeB?.[key] : selectedGeoB?.[key];
+                          source === "bike"
+                            ? bikeB?.[key]
+                            : selectedGeoB?.[key];
 
                         const [classA, classB] = mode
                           ? getWinnerClass(valueA, valueB, mode)
@@ -453,14 +597,19 @@ export default async function ComparePage({
 function MatchDifference({
   label,
   value,
+  description,
 }: {
   label: string;
   value: string;
+  description?: string;
 }) {
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-4">
       <p className="text-sm text-zinc-500">{label}</p>
       <p className="mt-1 text-2xl font-bold text-white">{value}</p>
+      {description && (
+        <p className="mt-1 text-xs text-zinc-500">{description}</p>
+      )}
     </div>
   );
 }
@@ -472,13 +621,66 @@ function RideDNACard({
   label: string;
   value: number | null;
 }) {
+  const scoreClass = getScoreClass(value);
+
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5">
       <p className="text-sm text-zinc-500">{label}</p>
 
-      <p className="mt-2 text-4xl font-bold text-orange-400">
+      <p className={`mt-2 text-4xl font-bold ${scoreClass}`}>
         {value !== null ? `${value}%` : "—"}
       </p>
     </div>
   );
+}
+
+function getScoreClass(value: number | null) {
+  if (value === null) return "text-zinc-500";
+  if (value >= 90) return "text-green-400";
+  if (value >= 80) return "text-lime-400";
+  if (value >= 70) return "text-yellow-400";
+  if (value >= 60) return "text-orange-400";
+  return "text-red-400";
+}
+
+function describeDifference(
+  value: number | null,
+  positiveLabel: string,
+  negativeLabel: string
+) {
+  if (value === null) return undefined;
+
+  const absValue = Math.abs(value);
+
+  if (absValue < 0.1) return "Nearly identical";
+
+  return value > 0 ? `Bike B is ${positiveLabel}` : `Bike B is ${negativeLabel}`;
+}
+
+function getGeometryVerdict(diffs: any, matchScore: number) {
+  if (matchScore >= 90) {
+    return "These bikes are very close geometrically. Expect a familiar fit and ride feel, with only small handling differences.";
+  }
+
+  if (diffs.wheelbase !== null && diffs.wheelbase > 20) {
+    return "Bike B should feel more stable at speed thanks to its longer wheelbase.";
+  }
+
+  if (diffs.wheelbase !== null && diffs.wheelbase < -20) {
+    return "Bike B should feel more playful and easier to maneuver thanks to its shorter wheelbase.";
+  }
+
+  if (diffs.headAngle !== null && diffs.headAngle < -0.5) {
+    return "Bike B has a slacker front end, which should feel more confident on steep descents.";
+  }
+
+  if (diffs.reach !== null && diffs.reach > 15) {
+    return "Bike B has a longer cockpit, so it may feel roomier and more stretched out.";
+  }
+
+  if (diffs.reach !== null && diffs.reach < -15) {
+    return "Bike B has a shorter cockpit, so it may feel more compact and easier to move around on.";
+  }
+
+  return "These bikes have some noticeable geometry differences, but they are still close enough to compare directly.";
 }

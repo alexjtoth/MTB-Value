@@ -24,7 +24,7 @@ export default async function BrandsPage() {
           </h1>
 
           <p className="mt-5 max-w-2xl text-lg text-zinc-400">
-            Browse every manufacturer currently tracked by MTB Market.
+            Browse every manufacturer currently tracked by MTB Index.
           </p>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

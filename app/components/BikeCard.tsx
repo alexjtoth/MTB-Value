@@ -21,7 +21,7 @@ export function BikeCard({ bike }: { bike: Bike }) {
       href={`/bike/${bike.slug}`}
       className="group block overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/70 transition hover:-translate-y-1 hover:border-lime-400 hover:bg-zinc-900"
     >
-      <div className="relative">
+      <div className="relative overflow-hidden">
         {bike.imageUrl ? (
           <img
             src={bike.imageUrl}

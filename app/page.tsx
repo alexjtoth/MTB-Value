@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { useBikeVersions } from "../hooks/useBikeVersions";
@@ -15,6 +16,7 @@ export default function Home() {
   const [modelFilter, setModelFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [yearFilter, setYearFilter] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const { bikeVersions, loading } = useBikeVersions();
 
@@ -57,6 +59,25 @@ export default function Home() {
       new Set(bikeVersions.map((bike) => bike.year).filter(Boolean))
     ).sort((a, b) => b - a);
   }, [bikeVersions]);
+
+  const suggestions = useMemo(() => {
+    const search = query.trim().toLowerCase();
+
+    if (search.length < 2) return [];
+
+    return bikeVersions
+      .filter((bike) => {
+        const brand = bike.bike_models?.brands?.name ?? "";
+        const model = bike.bike_models?.name ?? "";
+        const category = bike.bike_models?.category ?? "";
+        const year = bike.year?.toString() ?? "";
+
+        const fullName = `${year} ${brand} ${model} ${category}`.toLowerCase();
+
+        return fullName.includes(search);
+      })
+      .slice(0, 6);
+  }, [query, bikeVersions]);
 
   const filteredBikes = useMemo(() => {
     const search = query.trim().toLowerCase();
@@ -126,36 +147,110 @@ export default function Home() {
             compare similar used mountain bikes.
           </p>
 
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            className="mt-10 w-full rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4 text-lg text-white outline-none ring-lime-400 placeholder:text-zinc-500 focus:ring-2"
-            placeholder="Search: 2023 Propain Tyee"
-          />
+          <div className="relative mt-10">
+            <input
+              value={query}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setShowSuggestions(true);
+              }}
+              onFocus={() => setShowSuggestions(true)}
+              className="w-full rounded-2xl border border-zinc-700 bg-zinc-900 px-5 py-4 text-lg text-white outline-none ring-lime-400 placeholder:text-zinc-500 focus:ring-2"
+              placeholder="Search: 2023 Propain Tyee"
+            />
+
+            {showSuggestions && suggestions.length > 0 && (
+              <div className="absolute left-0 right-0 top-full z-20 mt-2 overflow-hidden rounded-2xl border border-zinc-700 bg-zinc-900 shadow-2xl">
+                {suggestions.map((bike) => {
+                  const brand = bike.bike_models?.brands?.name ?? "";
+                  const model = bike.bike_models?.name ?? "";
+                  const year = bike.year ?? "";
+                  const category = bike.bike_models?.category ?? "";
+                  const slug = `${brand}-${model}`
+  .toLowerCase()
+  .replaceAll(" ", "-")
+  .replaceAll("/", "-");
+
+                  return (
+                    <Link
+                      key={bike.id}
+                      href={slug ? `/bike/${slug}` : "#"}
+                      onClick={() => setShowSuggestions(false)}
+                      className="block border-b border-zinc-800 px-5 py-4 hover:bg-zinc-800"
+                    >
+                      <div className="font-semibold text-white">
+                        {year} {brand} {model}
+                      </div>
+                      <div className="text-sm text-zinc-400">{category}</div>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
 
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-4">
-            <select value={brandFilter} onChange={(event) => { setBrandFilter(event.target.value); setModelFilter(""); }} className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white outline-none ring-lime-400 focus:ring-2">
+            <select
+              value={brandFilter}
+              onChange={(event) => {
+                setBrandFilter(event.target.value);
+                setModelFilter("");
+              }}
+              className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white outline-none ring-lime-400 focus:ring-2"
+            >
               <option value="">All brands</option>
-              {brands.map((brand) => <option key={brand} value={brand}>{brand}</option>)}
+              {brands.map((brand) => (
+                <option key={brand} value={brand}>
+                  {brand}
+                </option>
+              ))}
             </select>
 
-            <select value={modelFilter} onChange={(event) => setModelFilter(event.target.value)} className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white outline-none ring-lime-400 focus:ring-2">
+            <select
+              value={modelFilter}
+              onChange={(event) => setModelFilter(event.target.value)}
+              className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white outline-none ring-lime-400 focus:ring-2"
+            >
               <option value="">All models</option>
-              {models.map((model) => <option key={model} value={model}>{model}</option>)}
+              {models.map((model) => (
+                <option key={model} value={model}>
+                  {model}
+                </option>
+              ))}
             </select>
 
-            <select value={categoryFilter} onChange={(event) => setCategoryFilter(event.target.value)} className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white outline-none ring-lime-400 focus:ring-2">
+            <select
+              value={categoryFilter}
+              onChange={(event) => setCategoryFilter(event.target.value)}
+              className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white outline-none ring-lime-400 focus:ring-2"
+            >
               <option value="">All categories</option>
-              {categories.map((category) => <option key={category} value={category}>{category}</option>)}
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>
 
-            <select value={yearFilter} onChange={(event) => setYearFilter(event.target.value)} className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white outline-none ring-lime-400 focus:ring-2">
+            <select
+              value={yearFilter}
+              onChange={(event) => setYearFilter(event.target.value)}
+              className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white outline-none ring-lime-400 focus:ring-2"
+            >
               <option value="">All years</option>
-              {years.map((year) => <option key={year} value={year}>{year}</option>)}
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
             </select>
           </div>
 
-          {(query || brandFilter || modelFilter || categoryFilter || yearFilter) && (
+          {(query ||
+            brandFilter ||
+            modelFilter ||
+            categoryFilter ||
+            yearFilter) && (
             <button
               onClick={() => {
                 setQuery("");
@@ -163,6 +258,7 @@ export default function Home() {
                 setModelFilter("");
                 setCategoryFilter("");
                 setYearFilter("");
+                setShowSuggestions(false);
               }}
               className="mt-4 w-fit rounded-full border border-zinc-700 px-4 py-2 text-sm text-zinc-300 hover:border-lime-400 hover:text-lime-400"
             >
@@ -171,7 +267,10 @@ export default function Home() {
           )}
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            <StatCard label="Bikes tracked" value={filteredBikes.length.toString()} />
+            <StatCard
+              label="Bikes tracked"
+              value={filteredBikes.length.toString()}
+            />
             <StatCard label="Average value" value={averageValue} />
             <StatCard label="Newest year" value={newestYear} />
           </div>
@@ -191,12 +290,12 @@ export default function Home() {
 
           <div className="mt-6">
             {loading ? (
-  <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-    {Array.from({ length: 6 }).map((_, index) => (
-      <BikeCardSkeleton key={index} />
-    ))}
-  </div>
-) : filteredBikes.length === 0 ? (
+              <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <BikeCardSkeleton key={index} />
+                ))}
+              </div>
+            ) : filteredBikes.length === 0 ? (
               <p className="text-zinc-400">
                 No bikes found. Try adjusting your search or filters.
               </p>

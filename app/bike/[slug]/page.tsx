@@ -29,6 +29,13 @@ export default async function BikePage({
           name
         )
       ),
+      bike_values (
+        excellent_value,
+        good_value,
+        fair_value,
+        poor_value,
+        retention_percent
+      ),
       bike_version_components (
         id,
         component_role,
@@ -90,6 +97,9 @@ export default async function BikePage({
   const depreciation = valueRetained != null ? 100 - valueRetained : null;
 
   const components = bike.bike_version_components ?? [];
+  const bikeValue = Array.isArray(bike.bike_values)
+  ? bike.bike_values[0]
+  : bike.bike_values;
   const geometry = bike.bike_geometry ?? [];
 
   const selectedGeometry =
@@ -217,20 +227,36 @@ export default async function BikePage({
 
               <div className="rounded-3xl border border-lime-400/30 bg-lime-400/10 p-7 backdrop-blur">
                 <p className="text-xs font-bold uppercase tracking-[0.25em] text-lime-400">
-                  Estimated Market Value
+                  Estimated Used Value
                 </p>
 
                 <p className="mt-3 text-5xl font-black text-lime-400">
-                  {value}
+                  {bikeValue?.good_value
+                    ? `$${bikeValue.good_value.toLocaleString()}`
+                    : value}
                 </p>
 
                 <div className="mt-6 h-px bg-lime-400/20" />
 
-                <p className="mt-6 text-sm leading-7 text-zinc-300">
-                  Early estimate based on age, MSRP, and simple depreciation
-                  until marketplace listings and comparable sales are
-                  introduced.
-                </p>
+                <div className="mt-6 space-y-3">
+                  <ValueRow
+                    label="Excellent"
+                    value={bikeValue?.excellent_value}
+                  />
+                  <ValueRow label="Good" value={bikeValue?.good_value} />
+                  <ValueRow label="Fair" value={bikeValue?.fair_value} />
+                  <ValueRow label="Poor" value={bikeValue?.poor_value} />
+                </div>
+
+                {bikeValue?.retention_percent && (
+                  <p className="mt-5 text-sm text-zinc-300">
+                    Retains{" "}
+                    <span className="font-bold text-lime-400">
+                      {Number(bikeValue.retention_percent)}%
+                    </span>{" "}
+                    of original MSRP.
+                  </p>
+                )}
 
                 <Link
                   href={`/compare?bike=${bike.id}`}
@@ -420,9 +446,7 @@ export default async function BikePage({
 
               {geometry.length > 0 && (
                 <div className="mt-6">
-                  <p className="mb-3 text-sm text-zinc-400">
-                    Comparing size
-                  </p>
+                  <p className="mb-3 text-sm text-zinc-400">Comparing size</p>
 
                   <div className="flex flex-wrap gap-2">
                     {geometry.map((geo: any) => (
@@ -447,8 +471,7 @@ export default async function BikePage({
                   const matchBike = match.bike;
                   const matchBrand =
                     matchBike.bike_models?.brands?.name ?? "Unknown";
-                  const matchModel =
-                    matchBike.bike_models?.name ?? "Unknown";
+                  const matchModel = matchBike.bike_models?.name ?? "Unknown";
 
                   return (
                     <div
@@ -617,13 +640,7 @@ function MethodCard({
   );
 }
 
-function GeometryRow({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
+function GeometryRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between border-b border-zinc-800 py-2 text-sm">
       <span className="text-zinc-500">{label}</span>
@@ -632,17 +649,28 @@ function GeometryRow({
   );
 }
 
-function DifferenceRow({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
+function DifferenceRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between text-sm">
       <span className="text-zinc-500">{label}</span>
       <span className="font-medium text-white">{value}</span>
+    </div>
+  );
+}
+
+function ValueRow({
+  label,
+  value,
+}: {
+  label: string;
+  value: number | null | undefined;
+}) {
+  return (
+    <div className="flex items-center justify-between border-b border-lime-400/10 pb-2 text-sm">
+      <span className="text-zinc-400">{label}</span>
+      <span className="font-semibold text-white">
+        {value ? `$${value.toLocaleString()}` : "N/A"}
+      </span>
     </div>
   );
 }

@@ -32,6 +32,18 @@ export default async function ComparePage({
         brands (
           name
         )
+      ),
+      bike_version_components (
+        id,
+        component_role,
+        notes,
+        components (
+          brand,
+          name,
+          category,
+          model_year,
+          msrp
+        )
       )
     `)
     .order("year", { ascending: false });
@@ -90,23 +102,22 @@ export default async function ComparePage({
       : null;
 
   const bestMatchingSize =
-  selectedGeoA && geometryB.length > 0
-    ? geometryB
-        .map((geo) => {
-          const score = geometryMatchScore(selectedGeoA, geo);
+    selectedGeoA && geometryB.length > 0
+      ? geometryB
+          .map((geo) => {
+            const score = geometryMatchScore(selectedGeoA, geo);
 
-          return {
-            geometry: geo,
-            size: geo.size,
-            score,
-            isCurrentlySelected: geo.size === selectedSizeB,
-          };
-        })
-        .sort((a, b) => b.score - a.score)[0]
-    : null;
+            return {
+              geometry: geo,
+              size: geo.size,
+              score,
+              isCurrentlySelected: geo.size === selectedSizeB,
+            };
+          })
+          .sort((a, b) => b.score - a.score)[0]
+      : null;
 
-const selectedSizeBIsBest =
-  bestMatchingSize?.size === selectedSizeB;
+  const selectedSizeBIsBest = bestMatchingSize?.size === selectedSizeB;
 
   const geometryVerdict =
     geometryDiffs && matchScore !== null
@@ -115,6 +126,60 @@ const selectedSizeBIsBest =
 
   const availableBikes =
     bikes?.filter((bike) => bike.id !== bikeAId && bike.id !== bikeBId) ?? [];
+
+  const factoryBuildRows = [
+    ["Fork", ["fork", "front fork", "suspension fork"]],
+    ["Shock", ["shock", "rear shock"]],
+    ["Drivetrain", ["drivetrain", "groupset"]],
+    ["Brakes", ["brakes", "brake", "brake set"]],
+    ["Wheels", ["wheelset", "wheels"]],
+    ["Dropper", ["dropper", "dropper post", "seatpost"]],
+    ["Handlebar", ["handlebar", "bar"]],
+    ["Stem", ["stem"]],
+    ["Crankset", ["crankset", "cranks"]],
+    ["Cassette", ["cassette"]],
+  ] as const;
+
+  const comparisonSections = [
+    {
+      title: "Weight & Suspension",
+      rows: [
+        ["Weight", "claimed_weight_lbs", " lb", "lower", "bike"],
+        ["Front Travel", "front_travel_mm", "mm", "higher", "bike"],
+        ["Rear Travel", "rear_travel_mm", "mm", "higher", "bike"],
+      ],
+    },
+    {
+      title: "Bike Details",
+      rows: [
+        ["MSRP", "msrp", "", null, "bike"],
+        ["Frame Material", "frame_material", "", null, "bike"],
+        ["Wheel Size", "wheel_size", "", null, "bike"],
+        ["Category", "category", "", null, "model"],
+      ],
+    },
+    {
+      title: "Fit",
+      rows: [
+        ["Reach", "reach_mm", "mm", null, "geo"],
+        ["Stack", "stack_mm", "mm", null, "geo"],
+        ["Effective Top Tube", "effective_top_tube_mm", "mm", null, "geo"],
+        ["Seat Tube", "seat_tube_mm", "mm", null, "geo"],
+        ["Standover", "standover_mm", "mm", null, "geo"],
+      ],
+    },
+    {
+      title: "Handling",
+      rows: [
+        ["Head Tube Angle", "head_tube_angle", "°", null, "geo"],
+        ["Seat Tube Angle", "seat_tube_angle", "°", null, "geo"],
+        ["Chainstay", "chainstay_mm", "mm", null, "geo"],
+        ["Wheelbase", "wheelbase_mm", "mm", null, "geo"],
+        ["BB Drop", "bb_drop_mm", "mm", null, "geo"],
+        ["Head Tube", "head_tube_mm", "mm", null, "geo"],
+      ],
+    },
+  ] as const;
 
   function formatBikeName(bike: any) {
     if (!bike) return "Select bike";
@@ -126,6 +191,11 @@ const selectedSizeBIsBest =
 
   function formatValue(value: any, suffix = "") {
     if (value === null || value === undefined || value === "") return "—";
+
+    if (suffix === "" && typeof value === "number" && value > 999) {
+      return `$${value.toLocaleString()}`;
+    }
+
     return `${value}${suffix}`;
   }
 
@@ -196,37 +266,39 @@ const selectedSizeBIsBest =
     return `/compare?${query.toString()}`;
   }
 
-  const comparisonSections = [
-    {
-      title: "Weight & Suspension",
-      rows: [
-        ["Weight", "claimed_weight_lbs", " lb", "lower", "bike"],
-        ["Front Travel", "front_travel_mm", "mm", "higher", "bike"],
-        ["Rear Travel", "rear_travel_mm", "mm", "higher", "bike"],
-      ],
-    },
-    {
-      title: "Fit",
-      rows: [
-        ["Reach", "reach_mm", "mm", null, "geo"],
-        ["Stack", "stack_mm", "mm", null, "geo"],
-        ["Effective Top Tube", "effective_top_tube_mm", "mm", null, "geo"],
-        ["Seat Tube", "seat_tube_mm", "mm", null, "geo"],
-        ["Standover", "standover_mm", "mm", null, "geo"],
-      ],
-    },
-    {
-      title: "Handling",
-      rows: [
-        ["Head Tube Angle", "head_tube_angle", "°", null, "geo"],
-        ["Seat Tube Angle", "seat_tube_angle", "°", null, "geo"],
-        ["Chainstay", "chainstay_mm", "mm", null, "geo"],
-        ["Wheelbase", "wheelbase_mm", "mm", null, "geo"],
-        ["BB Drop", "bb_drop_mm", "mm", null, "geo"],
-        ["Head Tube", "head_tube_mm", "mm", null, "geo"],
-      ],
-    },
-  ] as const;
+  function getComponentText(bike: any, roleOptions: readonly string[]) {
+    const components = bike?.bike_version_components ?? [];
+
+    const match = components.find((item: any) => {
+      const role = String(item.component_role ?? "").toLowerCase().trim();
+
+      return roleOptions.some((option) => role === option.toLowerCase());
+    });
+
+    if (!match) return "—";
+
+    const brand = match.components?.brand ?? "";
+    const name = match.components?.name ?? "";
+    const notes = match.notes ?? "";
+
+    const componentName = `${brand} ${name}`.trim();
+
+    if (componentName && notes) return `${componentName} — ${notes}`;
+    if (componentName) return componentName;
+    if (notes) return notes;
+
+    return "—";
+  }
+
+  function getBikeDetailValue(bike: any, key: string) {
+    if (!bike) return null;
+
+    if (key === "category") {
+      return bike.bike_models?.category ?? null;
+    }
+
+    return bike[key];
+  }
 
   return (
     <>
@@ -244,7 +316,8 @@ const selectedSizeBIsBest =
 
             <h1 className="mt-4 text-4xl font-bold">Compare Bikes</h1>
             <p className="mt-2 text-zinc-400">
-              Compare specs, geometry, weight, and value side by side.
+              Compare specs, geometry, factory builds, weight, and value side by
+              side.
             </p>
           </div>
 
@@ -320,9 +393,13 @@ const selectedSizeBIsBest =
                     Geometry Match
                   </p>
 
-                  <h2 className={`mt-3 text-6xl font-black ${getScoreClass(matchScore)}`}>
-  {matchScore}%
-</h2>
+                  <h2
+                    className={`mt-3 text-6xl font-black ${getScoreClass(
+                      matchScore
+                    )}`}
+                  >
+                    {matchScore}%
+                  </h2>
 
                   <p className="mt-3 text-xl font-semibold">
                     {getMatchLabel(matchScore)}
@@ -335,71 +412,75 @@ const selectedSizeBIsBest =
                   </p>
 
                   {geometryVerdict && (
-  <div className="mt-6 rounded-2xl border border-zinc-800 bg-zinc-950 p-5">
-    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400">
-      Ride Impression
-    </p>
+                    <div className="mt-6 rounded-2xl border border-zinc-800 bg-zinc-950 p-5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400">
+                        Ride Impression
+                      </p>
 
-    <p className="mt-3 text-lg leading-8 text-zinc-200">
-      {geometryVerdict}
-    </p>
-  </div>
-)}
+                      <p className="mt-3 text-lg leading-8 text-zinc-200">
+                        {geometryVerdict}
+                      </p>
+                    </div>
+                  )}
 
                   {bestMatchingSize && (
-  <div className="mt-4 rounded-2xl border border-orange-500/30 bg-orange-500/10 p-4">
-    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400">
-      Smart Size Match
-    </p>
+                    <div className="mt-4 rounded-2xl border border-orange-500/30 bg-orange-500/10 p-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400">
+                        Smart Size Match
+                      </p>
 
-    <p className="mt-2 text-4xl font-black text-white">
-      {bestMatchingSize.size}
-    </p>
+                      <p className="mt-2 text-4xl font-black text-white">
+                        {bestMatchingSize.size}
+                      </p>
 
-    <p className={`mt-2 text-2xl font-bold ${getScoreClass(bestMatchingSize.score)}`}>
-  {bestMatchingSize.score}% Match
-</p>
+                      <p
+                        className={`mt-2 text-2xl font-bold ${getScoreClass(
+                          bestMatchingSize.score
+                        )}`}
+                      >
+                        {bestMatchingSize.score}% Match
+                      </p>
 
-<p className="mt-3 text-sm text-zinc-400">
-  Closest equivalent to your{" "}
-  <span className="font-semibold text-white">
-    {selectedSizeA || "—"}
-  </span>{" "}
-  on the {formatBikeName(bikeA)}.
-</p>
+                      <p className="mt-3 text-sm text-zinc-400">
+                        Closest equivalent to your{" "}
+                        <span className="font-semibold text-white">
+                          {selectedSizeA || "—"}
+                        </span>{" "}
+                        on the {formatBikeName(bikeA)}.
+                      </p>
 
-    {!selectedSizeBIsBest && (
-      <Link
-        href={compareHref({
-          bike: bikeAId,
-          compare: bikeBId,
-          sizeA: selectedSizeA,
-          sizeB: bestMatchingSize.size,
-        })}
-        className="mt-4 inline-flex rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600"
-      >
-        Switch to best size
-      </Link>
-    )}
+                      {!selectedSizeBIsBest && (
+                        <Link
+                          href={compareHref({
+                            bike: bikeAId,
+                            compare: bikeBId,
+                            sizeA: selectedSizeA,
+                            sizeB: bestMatchingSize.size,
+                          })}
+                          className="mt-4 inline-flex rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600"
+                        >
+                          Switch to best size
+                        </Link>
+                      )}
 
-    {selectedSizeBIsBest && (
-      <div className="mt-5 flex items-center gap-2 rounded-xl border border-green-500/20 bg-green-500/10 px-4 py-3">
-  <span className="text-lg">✓</span>
+                      {selectedSizeBIsBest && (
+                        <div className="mt-5 flex items-center gap-2 rounded-xl border border-green-500/20 bg-green-500/10 px-4 py-3">
+                          <span className="text-lg">✓</span>
 
-  <div>
-    <p className="text-sm font-semibold text-green-400">
-      Recommended Size Selected
-    </p>
+                          <div>
+                            <p className="text-sm font-semibold text-green-400">
+                              Recommended Size Selected
+                            </p>
 
-    <p className="text-xs text-zinc-400">
-      You're already comparing the closest matching size.
-    </p>
-  </div>
-</div>
-    )}
-  </div>
-)}
-
+                            <p className="text-xs text-zinc-400">
+                              You're already comparing the closest matching
+                              size.
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -495,10 +576,12 @@ const selectedSizeBIsBest =
 
           <section className="mt-8 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900">
             <div className="border-b border-zinc-800 p-5">
-              <h2 className="text-2xl font-semibold">Geometry Comparison</h2>
+              <h2 className="text-2xl font-semibold">
+                Full Bike Comparison
+              </h2>
               <p className="mt-1 text-sm text-zinc-400">
-                Orange highlights clear spec advantages like lower weight or
-                more travel.
+                Factory build, weight, suspension, frame details, and geometry
+                in one table.
               </p>
             </div>
 
@@ -519,6 +602,27 @@ const selectedSizeBIsBest =
                     <td className="px-5 py-3">{selectedSizeB || "—"}</td>
                   </tr>
 
+                  <tr className="border-t border-zinc-800 bg-zinc-950">
+                    <td
+                      colSpan={3}
+                      className="px-5 py-3 text-xs font-bold uppercase tracking-[0.25em] text-orange-400"
+                    >
+                      Factory Build Components
+                    </td>
+                  </tr>
+
+                  {factoryBuildRows.map(([label, roles]) => (
+                    <tr key={label} className="border-t border-zinc-800">
+                      <td className="px-5 py-3 text-zinc-400">{label}</td>
+                      <td className="px-5 py-3">
+                        {getComponentText(bikeA, roles)}
+                      </td>
+                      <td className="px-5 py-3">
+                        {getComponentText(bikeB, roles)}
+                      </td>
+                    </tr>
+                  ))}
+
                   {comparisonSections.map((section) => (
                     <React.Fragment key={section.title}>
                       <tr className="border-t border-zinc-800 bg-zinc-950">
@@ -534,11 +638,15 @@ const selectedSizeBIsBest =
                         const valueA =
                           source === "bike"
                             ? bikeA?.[key]
+                            : source === "model"
+                            ? getBikeDetailValue(bikeA, key)
                             : selectedGeoA?.[key];
 
                         const valueB =
                           source === "bike"
                             ? bikeB?.[key]
+                            : source === "model"
+                            ? getBikeDetailValue(bikeB, key)
                             : selectedGeoB?.[key];
 
                         const [classA, classB] = mode

@@ -90,6 +90,7 @@ function calculateDifferences(current: BikeGeometry, comparison: BikeGeometry) {
     rearTravel: diff(current.rear_travel_mm, comparison.rear_travel_mm),
   };
 }
+
 function toNumber(value: GeometryValue) {
   if (value === null || value === undefined) return null;
 

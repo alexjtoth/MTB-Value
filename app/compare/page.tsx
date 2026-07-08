@@ -6,6 +6,7 @@ import { supabase } from "../lib/supabase";
 import {
   geometryMatchScore,
   geometryDifferences,
+  rideDNA,
 } from "../lib/geometrymatch";
 
 export default async function ComparePage({
@@ -71,6 +72,9 @@ export default async function ComparePage({
     selectedGeoA && selectedGeoB
       ? geometryDifferences(selectedGeoA, selectedGeoB)
       : null;
+
+  const dna =
+    selectedGeoA && selectedGeoB ? rideDNA(selectedGeoA, selectedGeoB) : null;
 
   const availableBikes =
     bikes?.filter((bike) => bike.id !== bikeAId && bike.id !== bikeBId) ?? [];
@@ -288,10 +292,10 @@ export default async function ComparePage({
                   </p>
 
                   <p className="mt-3 text-sm leading-6 text-zinc-400">
-  {formatBikeName(bikeA)} size {selectedSizeA || "—"} vs{" "}
-  {formatBikeName(bikeB)} size {selectedSizeB || "—"}.
-  Score is based on actual geometry measurements.
-</p>
+                    {formatBikeName(bikeA)} size {selectedSizeA || "—"} vs{" "}
+                    {formatBikeName(bikeB)} size {selectedSizeB || "—"}. Score
+                    is based on actual geometry measurements.
+                  </p>
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2">
@@ -325,6 +329,27 @@ export default async function ComparePage({
                   />
                 </div>
               </div>
+
+              {dna && (
+                <>
+                  <div className="mt-8 border-t border-zinc-800 pt-6">
+                    <h3 className="text-lg font-semibold text-white">
+                      Ride DNA
+                    </h3>
+
+                    <p className="mt-2 text-sm text-zinc-400">
+                      These scores break the overall Geometry Match into fit,
+                      handling, and suspension similarity.
+                    </p>
+                  </div>
+
+                  <div className="mt-5 grid gap-4 md:grid-cols-3">
+                    <RideDNACard label="Fit" value={dna.fit} />
+                    <RideDNACard label="Handling" value={dna.handling} />
+                    <RideDNACard label="Suspension" value={dna.suspension} />
+                  </div>
+                </>
+              )}
             </section>
           )}
 
@@ -436,6 +461,24 @@ function MatchDifference({
     <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-4">
       <p className="text-sm text-zinc-500">{label}</p>
       <p className="mt-1 text-2xl font-bold text-white">{value}</p>
+    </div>
+  );
+}
+
+function RideDNACard({
+  label,
+  value,
+}: {
+  label: string;
+  value: number | null;
+}) {
+  return (
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5">
+      <p className="text-sm text-zinc-500">{label}</p>
+
+      <p className="mt-2 text-4xl font-bold text-orange-400">
+        {value !== null ? `${value}%` : "—"}
+      </p>
     </div>
   );
 }

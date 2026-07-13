@@ -106,7 +106,135 @@
               "head_tube_mm": 125
             }
           ],
-          "components": []
+          "components": [
+            {
+              "category": "Fork",
+              "component_role": "Fork",
+              "brand": "Marzocchi",
+              "name": "Bomber Z",
+              "raw_name": "Marzocchi Bomber Z 170 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "travel_mm": 170
+              }
+            },
+            {
+              "category": "Shock",
+              "component_role": "Shock",
+              "brand": "Marzocchi",
+              "name": "Bomber Coil",
+              "raw_name": "Marzocchi Bomber Coil",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Drivetrain",
+              "component_role": "Drivetrain",
+              "brand": "SRAM",
+              "name": "Eagle 70 Transmission",
+              "raw_name": "SRAM Eagle 70 Transmission (1x12)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "chainrings": 1,
+                "speeds": 12
+              }
+            },
+            {
+              "category": "Brakes",
+              "component_role": "Brakes",
+              "brand": "Magura",
+              "name": "MT5",
+              "raw_name": "Magura MT5 203 mm / 203 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "front_rotor_mm": 203,
+                "rear_rotor_mm": 203
+              }
+            },
+            {
+              "category": "Wheels",
+              "component_role": "Wheels",
+              "brand": "Crankbrothers",
+              "name": "Synthesis Enduro Alloy",
+              "raw_name": "Crankbrother Synthesis Enduro Alloy",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Tires",
+              "component_role": "Tires",
+              "brand": "Maxxis",
+              "name": "Assegai/ DHR II",
+              "raw_name": "Maxxis Assegai/ DHR II",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Stem",
+              "component_role": "Stem",
+              "brand": "Sixpack",
+              "name": "Millenium 35",
+              "raw_name": "Sixpack Millenium 35",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Handlebar",
+              "component_role": "Handlebar",
+              "brand": "OneUp",
+              "name": "Carbon 20 mm Rise",
+              "raw_name": "OneUp Carbon 20 mm Rise",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "rise_mm": 20,
+                "material": "Carbon"
+              }
+            },
+            {
+              "category": "Grips",
+              "component_role": "Grips",
+              "brand": "Ergon",
+              "name": "GDH Team",
+              "raw_name": "Ergon GDH Team",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Seatpost",
+              "component_role": "Seatpost",
+              "brand": "OneUp",
+              "name": "V3 (M = 150mm, L = 180mm, XL = 210mm)",
+              "raw_name": "OneUp V3 (M = 150mm, L = 180mm, XL = 210mm)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "travel_options_mm": [
+                  150,
+                  180,
+                  210
+                ]
+              }
+            },
+            {
+              "category": "Saddle",
+              "component_role": "Saddle",
+              "brand": "Ergon",
+              "name": "SM Enduro Comp",
+              "raw_name": "Ergon SM Enduro Comp",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            }
+          ]
         }
       ]
     }

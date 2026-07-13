@@ -1,24 +1,51 @@
 {
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/enduro/tyee-al/",
   "brand": {
     "name": "Propain",
+    "slug": "propain",
     "country": "Germany",
     "website_url": "https://www.propain-bikes.com"
   },
   "models": [
     {
-      "name": "Tyee",
-      "slug": "tyee",
+      "name": "Tyee 6.1 AL",
+      "slug": "tyee-6-1-al",
       "category": "Enduro",
-      "introduced_year": 2018,
+      "description": "Whether it’s an after-work ride, a bike park session, or a multi-day enduro race: the Tyee AL Enduro feels right at home on any terrain. It’s agile and efficient, while staying calm and composed when the trail gets fast and rough. The geometry and kinematics strike the perfect balance between climbing efficiency and downhill capability. Tons of travel, without ever feeling sluggish. Maximum grip, total control – thanks to a perfect mix of stiffness and flex.",
+      "introduced_year": null,
+      "discontinued_year": null,
       "versions": [
         {
-          "year": 2024,
-          "msrp": 5699,
+          "year": 2025,
+          "trim_name": "",
+          "currency": "USD",
+          "msrp": 2899,
           "frame_material": "Aluminum",
-          "wheel_size": "29",
+          "wheel_size": null,
           "front_travel_mm": 170,
           "rear_travel_mm": 160,
-          "image_url": "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91"
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2025/05/14011714/PROPAIN-Tyee-6-1-AL-wood-rose-Front.png",
+          "source_name": "Propain",
+          "source_record_id": "TYEE61AL",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/enduro/tyee-al/",
+          "status": "active",
+          "available_sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [],
+          "components": []
         }
       ]
     }

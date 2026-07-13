@@ -1,6 +1,9 @@
 {
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com",
   "brand": {
     "name": "Propain",
+    "slug": "propain",
     "country": "Germany",
     "website_url": "https://www.propain-bikes.com"
   },
@@ -13,21 +16,51 @@
       "versions": [
         {
           "year": 2023,
+          "trim_name": "",
+          "currency": "USD",
           "msrp": 5499,
           "frame_material": "Aluminum",
           "wheel_size": "29",
           "front_travel_mm": 170,
           "rear_travel_mm": 160,
-          "image_url": "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91"
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91",
+          "source_name": "Propain",
+          "source_record_id": "propain-tyee-2023",
+          "source_url": "https://www.propain-bikes.com",
+          "status": "active",
+          "geometry": [],
+          "components": []
         },
         {
           "year": 2024,
+          "trim_name": "",
+          "currency": "USD",
           "msrp": 5699,
           "frame_material": "Aluminum",
           "wheel_size": "29",
           "front_travel_mm": 170,
           "rear_travel_mm": 160,
-          "image_url": "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91"
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://images.unsplash.com/photo-1576435728678-68d0fbf94e91",
+          "source_name": "Propain",
+          "source_record_id": "propain-tyee-2024",
+          "source_url": "https://www.propain-bikes.com",
+          "status": "active",
+          "geometry": [],
+          "components": []
         }
       ]
     }

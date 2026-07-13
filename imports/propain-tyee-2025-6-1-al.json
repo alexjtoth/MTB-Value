@@ -1,0 +1,114 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/enduro/tyee-al/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Tyee",
+      "slug": "tyee",
+      "category": "Enduro",
+      "description": "Whether it’s an after-work ride, a bike park session, or a multi-day enduro race: the Tyee AL Enduro feels right at home on any terrain. It’s agile and efficient, while staying calm and composed when the trail gets fast and rough. The geometry and kinematics strike the perfect balance between climbing efficiency and downhill capability. Tons of travel, without ever feeling sluggish. Maximum grip, total control – thanks to a perfect mix of stiffness and flex.",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "6.1 AL",
+          "currency": "USD",
+          "msrp": 2899,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 170,
+          "rear_travel_mm": 160,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2025/05/14011714/PROPAIN-Tyee-6-1-AL-wood-rose-Front.png",
+          "source_name": "Propain",
+          "source_record_id": "tyee61al-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/enduro/tyee-al/",
+          "status": "active",
+          "available_sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [
+            {
+              "size": "XS",
+              "reach_mm": 399,
+              "stack_mm": 580,
+              "wheelbase_mm": 1151,
+              "chainstay_mm": 430,
+              "bb_drop_mm": 7,
+              "head_tube_angle": 63.9,
+              "seat_tube_angle": 77.3,
+              "seat_tube_mm": 380,
+              "head_tube_mm": 90
+            },
+            {
+              "size": "S",
+              "reach_mm": 424,
+              "stack_mm": 598,
+              "wheelbase_mm": 1184,
+              "chainstay_mm": 430,
+              "bb_drop_mm": 7,
+              "head_tube_angle": 63.9,
+              "seat_tube_angle": 77.3,
+              "seat_tube_mm": 400,
+              "head_tube_mm": 110
+            },
+            {
+              "size": "M",
+              "reach_mm": 449,
+              "stack_mm": 626,
+              "wheelbase_mm": 1237,
+              "chainstay_mm": 445,
+              "bb_drop_mm": 22,
+              "head_tube_angle": 63.9,
+              "seat_tube_angle": 76.9,
+              "seat_tube_mm": 425,
+              "head_tube_mm": 105
+            },
+            {
+              "size": "L",
+              "reach_mm": 473,
+              "stack_mm": 635,
+              "wheelbase_mm": 1266,
+              "chainstay_mm": 445,
+              "bb_drop_mm": 22,
+              "head_tube_angle": 63.9,
+              "seat_tube_angle": 76.9,
+              "seat_tube_mm": 450,
+              "head_tube_mm": 115
+            },
+            {
+              "size": "XL",
+              "reach_mm": 499,
+              "stack_mm": 646,
+              "wheelbase_mm": 1296,
+              "chainstay_mm": 445,
+              "bb_drop_mm": 22,
+              "head_tube_angle": 63.9,
+              "seat_tube_angle": 76.9,
+              "seat_tube_mm": 480,
+              "head_tube_mm": 125
+            }
+          ],
+          "components": []
+        }
+      ]
+    }
+  ]
+}

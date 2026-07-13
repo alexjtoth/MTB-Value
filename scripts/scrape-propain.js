@@ -1,16 +1,26 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-const { scrapeProduct } = require("./scrapers/product");
-const { scrapeGeometry } = require("./scrapers/geometry");
+const brands = require("./config/brands");
+
+const {
+  scrapeProduct,
+} = require("./scrapers/propain/product");
+
+const {
+  scrapeGeometry,
+} = require("./scrapers/propain/geometry");
+
 const {
   scrapeComponents,
-} = require("./scrapers/components");
+} = require("./scrapers/propain/components");
 
 const {
   buildCatalog,
   writeCatalog,
-} = require("./scrapers/output");
+} = require("./scrapers/propain/output");
+
+const BRAND = brands.propain;
 
 const DEFAULT_URL =
   "https://www.propain-bikes.com/us/product/bikes/enduro/tyee-al/";
@@ -18,7 +28,6 @@ const DEFAULT_URL =
 async function downloadPage(url) {
   const response = await axios.get(url, {
     timeout: 30000,
-
     headers: {
       "User-Agent":
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/148 Safari/537.36",
@@ -26,22 +35,29 @@ async function downloadPage(url) {
       Accept:
         "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
 
-      "Accept-Language": "en-US,en;q=0.9",
+      "Accept-Language":
+        "en-US,en;q=0.9",
     },
   });
 
   return response.data;
 }
 
-function printSummary(catalog, outputPath, outputFileName) {
+function printSummary(
+  catalog,
+  outputPath,
+  outputFileName
+) {
   const model = catalog.models[0];
   const version = model.versions[0];
 
   console.log("\nProduct found:");
   console.log(`  Model: ${model.name}`);
+
   console.log(
     `  Trim: ${version.trim_name || "None"}`
   );
+
   console.log(`  Year: ${version.year}`);
 
   console.log(
@@ -84,10 +100,14 @@ function printSummary(catalog, outputPath, outputFileName) {
     );
   }
 
-  console.log(`  Image: ${version.image_url}`);
+  console.log(
+    `  Image: ${version.image_url}`
+  );
+
   console.log(`\nSaved to: ${outputPath}`);
 
   console.log("\nNext command:");
+
   console.log(
     `node scripts/import-bikes.js ${outputFileName}`
   );
@@ -99,7 +119,7 @@ async function main() {
 
   if (!requestedYear) {
     throw new Error(
-      'Usage: node scripts/scrape-propain.js 2025 "PRODUCT_URL"'
+      `Usage: node scripts/scrape-propain.js 2025 "PRODUCT_URL"`
     );
   }
 
@@ -119,7 +139,11 @@ async function main() {
 
   const catalog = buildCatalog({
     sourceUrl: url,
-    brand: productData.brand,
+    brand: {
+      ...productData.brand,
+      name: BRAND.name,
+      website_url: BRAND.baseUrl,
+    },
     model: productData.model,
     version: productData.version,
     geometry,
@@ -139,7 +163,10 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("\nScrape failed:");
+  console.error(
+    `\n${BRAND.name} scrape failed:`
+  );
+
   console.error(error.message);
 
   process.exitCode = 1;

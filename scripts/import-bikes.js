@@ -873,38 +873,137 @@ async function importFile(fileName) {
 // ============================================================
 
 async function main() {
-  const importsDir = path.join(__dirname, "..", "imports");
+  const requestedFileNames =
+    process.argv.slice(2);
 
-  const jsonFiles = fs
-    .readdirSync(importsDir)
-    .filter(
-      (file) =>
-        file.endsWith(".json") &&
-        !file.includes("generated")
+  const importsDirectory =
+    getImportsDirectory();
+
+  if (!fs.existsSync(importsDirectory)) {
+    throw new Error(
+      `Imports folder not found: ${importsDirectory}`
     );
+  }
+
+  let jsonFiles;
+
+  /*
+   * When filenames are supplied, import only those files.
+   *
+   * Example:
+   * node scripts/import-bikes.js bike-one.json bike-two.json
+   */
+  if (requestedFileNames.length > 0) {
+    jsonFiles = requestedFileNames;
+  } else {
+    /*
+     * With no filenames, retain the existing bulk-import mode.
+     */
+    jsonFiles = fs
+      .readdirSync(importsDirectory)
+      .filter(
+        (file) =>
+          file
+            .toLowerCase()
+            .endsWith(".json") &&
+          !file
+            .toLowerCase()
+            .includes("generated")
+      )
+      .sort();
+  }
 
   if (jsonFiles.length === 0) {
-    console.log("No JSON files found.");
+    console.log(
+      "No JSON import files found."
+    );
+
     return;
   }
 
-  console.log(`Found ${jsonFiles.length} import files.\n`);
+  console.log(
+    `Found ${jsonFiles.length} import file${
+      jsonFiles.length === 1 ? "" : "s"
+    }.\n`
+  );
 
-  for (const file of jsonFiles) {
+  const totals = {
+    imported: 0,
+    updated: 0,
+    failed: 0,
+    geometryRows: 0,
+    componentRows: 0,
+    fileFailures: 0,
+  };
+
+  for (const jsonFile of jsonFiles) {
+    console.log("\n========================================");
+    console.log(`IMPORTING ${jsonFile}`);
+    console.log("========================================\n");
+
     try {
-      await importFile(file);
-    } catch (err) {
-      console.error(`Failed importing ${file}`);
-      console.error(err.message);
+      const counters =
+        await importFile(jsonFile);
+
+      totals.imported +=
+        counters.imported;
+
+      totals.updated +=
+        counters.updated;
+
+      totals.failed +=
+        counters.failed;
+
+      totals.geometryRows +=
+        counters.geometryRows;
+
+      totals.componentRows +=
+        counters.componentRows;
+    } catch (error) {
+      totals.fileFailures += 1;
+
+      console.error(
+        `Could not import ${jsonFile}: ${error.message}`
+      );
     }
   }
 
-  console.log("\n=================================");
+  console.log("\n========================================");
   console.log("ALL IMPORTS COMPLETE");
-  console.log("=================================");
+  console.log("========================================");
+  console.log(
+    `Files requested: ${jsonFiles.length}`
+  );
+  console.log(
+    `File-level failures: ${totals.fileFailures}`
+  );
+  console.log(
+    `New versions: ${totals.imported}`
+  );
+  console.log(
+    `Updated versions: ${totals.updated}`
+  );
+  console.log(
+    `Failed versions: ${totals.failed}`
+  );
+  console.log(
+    `Geometry rows processed: ${totals.geometryRows}`
+  );
+  console.log(
+    `Components processed: ${totals.componentRows}`
+  );
+
+  if (
+    totals.failed > 0 ||
+    totals.fileFailures > 0
+  ) {
+    process.exitCode = 1;
+  }
 }
 
 main().catch((error) => {
+  console.error("\nImport failed:");
   console.error(error);
+
   process.exitCode = 1;
 });

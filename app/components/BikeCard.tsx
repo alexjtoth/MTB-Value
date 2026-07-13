@@ -21,15 +21,17 @@ export function BikeCard({ bike }: { bike: Bike }) {
       href={`/bike/${bike.slug}`}
       className="group block overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/70 transition hover:-translate-y-1 hover:border-lime-400 hover:bg-zinc-900"
     >
-      <div className="relative overflow-hidden">
+      <div className="relative h-56 overflow-hidden bg-zinc-950">
         {bike.imageUrl ? (
           <img
             src={bike.imageUrl}
             alt={`${bike.year} ${bike.brand} ${bike.model}`}
-            className="h-56 w-full object-cover transition duration-300 group-hover:scale-105"
+            referrerPolicy="no-referrer"
+            loading="lazy"
+            className="h-full w-full object-contain p-3 transition duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-56 items-center justify-center bg-zinc-950 text-zinc-500">
+          <div className="flex h-full items-center justify-center text-zinc-500">
             No Image
           </div>
         )}
@@ -49,7 +51,9 @@ export function BikeCard({ bike }: { bike: Bike }) {
             {bike.model}
           </h2>
 
-          <p className="mt-2 text-sm text-zinc-400">{bike.category}</p>
+          <p className="mt-2 text-sm text-zinc-400">
+            {bike.category}
+          </p>
         </div>
 
         <div className="flex items-end justify-between gap-4 border-t border-zinc-800 pt-4">
@@ -57,6 +61,7 @@ export function BikeCard({ bike }: { bike: Bike }) {
             <p className="text-xs uppercase tracking-wide text-zinc-500">
               Estimated value
             </p>
+
             <p className="mt-1 text-2xl font-bold text-white">
               {formattedValue}
             </p>

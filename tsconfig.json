@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/data/bike.ts"  ],
+, "app/data/bike.ts", "scripts/config/brands.js"  ],
   "exclude": ["node_modules"]
 }

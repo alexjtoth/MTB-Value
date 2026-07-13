@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
-const { slugify } = require("./helpers");
+
+const {
+  slugify,
+} = require("./helpers");
 
 function buildCatalog({
   sourceUrl,
@@ -41,15 +44,25 @@ function writeCatalog(catalog) {
       slugify(catalog.brand.name),
       slugify(model.name),
       version.year,
-      slugify(version.trim_name || "base"),
+      slugify(
+        version.trim_name || "base"
+      ),
     ].join("-") + ".json";
 
   const outputPath = path.join(
     __dirname,
     "..",
     "..",
+    "..",
     "imports",
     outputFileName
+  );
+
+  fs.mkdirSync(
+    path.dirname(outputPath),
+    {
+      recursive: true,
+    }
   );
 
   fs.writeFileSync(

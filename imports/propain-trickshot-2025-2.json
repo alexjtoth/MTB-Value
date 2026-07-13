@@ -1,0 +1,167 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/dirt/trickshot-2/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Trickshot",
+      "slug": "trickshot",
+      "category": "Dirt, Youth",
+      "description": "Whether you're hitting a chill dirt jump session with your buddies, chasing the perfect flow on the pump track, or throwing down endless jibs, tricks, and flips at the skatepark—this bike has you covered. Whether you're a beginner, pro, contest rider, or just out for fun, the Trickshot 2 lets you take the lead and call the shots.",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "2",
+          "currency": "USD",
+          "msrp": 1299,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 100,
+          "rear_travel_mm": null,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2025/04/07064031/PROPAIN-Trickshot-2-dark-peach-Front.png",
+          "source_name": "Propain",
+          "source_record_id": "a002076-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/dirt/trickshot-2/",
+          "status": "active",
+          "available_sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [],
+          "components": [
+            {
+              "category": "Fork",
+              "component_role": "Fork",
+              "brand": "XFusion",
+              "name": "Slant RC",
+              "raw_name": "XFusion Slant RC 100 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "travel_mm": 100
+              }
+            },
+            {
+              "category": "Brakes",
+              "component_role": "Brakes",
+              "brand": "SRAM",
+              "name": "DB4 160 mm",
+              "raw_name": "SRAM DB4 160 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "front_rotor_mm": 160
+              }
+            },
+            {
+              "category": "Crankset",
+              "component_role": "Crankset",
+              "brand": "SRAM",
+              "name": "X1 1000 165 mm 30T",
+              "raw_name": "SRAM X1 1000 165 mm 30T",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Chain",
+              "component_role": "Chain",
+              "brand": "KMC",
+              "name": "Singlespeed",
+              "raw_name": "KMC Singlespeed",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Stem",
+              "component_role": "Stem",
+              "brand": "Sixpack",
+              "name": "Kamikaze 35",
+              "raw_name": "Sixpack Kamikaze 35",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Handlebar",
+              "component_role": "Handlebar",
+              "brand": "Sixpack",
+              "name": "Millenium 785",
+              "raw_name": "Sixpack Millenium 785",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Grips",
+              "component_role": "Grips",
+              "brand": "Sixpack",
+              "name": "S-Trix",
+              "raw_name": "Sixpack S-Trix",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Seatpost",
+              "component_role": "Seatpost",
+              "brand": "Sixpack",
+              "name": "Aluminum",
+              "raw_name": "Sixpack Aluminum",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Saddle",
+              "component_role": "Saddle",
+              "brand": "Sixpack",
+              "name": "DJ",
+              "raw_name": "Sixpack DJ",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Wheels",
+              "component_role": "Wheels",
+              "brand": "DT Swiss",
+              "name": "D 1900",
+              "raw_name": "DT Swiss D 1900",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Tires",
+              "component_role": "Tires",
+              "brand": "Schwalbe",
+              "name": "Billy Bonkers",
+              "raw_name": "Schwalbe Billy Bonkers",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/freeride/spindrift-al/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Spindrift",
+      "slug": "spindrift",
+      "category": "Freeride",
+      "description": "Challenging lines, massive jumps, or high drops—no matter how you define freeride, the Spindrift AL does it all! From a barspin setup and singlespeed to a dropper post and 12-speed cassette—you decide what your ideal freeride bike looks like. With its robust aluminum frame, no drop is too high and no jump is too far. The 12-speed cassette also gets you to the top when climbing. So nothing stands in the way of an occasional session on your home trails. Robust, playful, versatile",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "AL",
+          "currency": "USD",
+          "msrp": 2999,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 180,
+          "rear_travel_mm": 180,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2024/08/11072226/PROPAIN-Spindrift-5-AL-midnight-blue_Ultimate_002_WATERMELON-STUDIOS.png",
+          "source_name": "Propain",
+          "source_record_id": "spindrift5al-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/freeride/spindrift-al/",
+          "status": "active",
+          "available_sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [],
+          "components": []
+        }
+      ]
+    }
+  ]
+}

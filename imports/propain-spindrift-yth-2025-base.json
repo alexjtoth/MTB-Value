@@ -1,0 +1,49 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/youth/spindrift-yth/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Spindrift YTH",
+      "slug": "spindrift-yth",
+      "category": "Freeride, Youth",
+      "description": "The Spindrift YTH is the perfect choice for young riders looking to push their limits in the bike park and on challenging freeride lines. With plenty of travel and components specifically tuned for younger riders, it ensures safety in any terrain. Whether it’s big drops, steep descents, or rough trails – the Spindrift YTH delivers maximum reserves and full control.",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "",
+          "currency": "USD",
+          "msrp": 3099,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 180,
+          "rear_travel_mm": 180,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2025/04/07063035/PROPAIN-Spindrift-YTH-dirty-lavender-Front.png",
+          "source_name": "Propain",
+          "source_record_id": "a002121-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/youth/spindrift-yth/",
+          "status": "active",
+          "available_sizes": [
+            "S"
+          ],
+          "geometry": [],
+          "components": []
+        }
+      ]
+    }
+  ]
+}

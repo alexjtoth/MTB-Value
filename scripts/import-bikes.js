@@ -873,91 +873,38 @@ async function importFile(fileName) {
 // ============================================================
 
 async function main() {
-  const requestedFileName = process.argv[2];
-  const importsDirectory = getImportsDirectory();
+  const importsDir = path.join(__dirname, "..", "imports");
 
-  if (!fs.existsSync(importsDirectory)) {
-    throw new Error(
-      `Imports folder not found: ${importsDirectory}`
-    );
-  }
-
-  if (requestedFileName) {
-    console.log(`Importing ${requestedFileName}...\n`);
-
-    const counters = await importFile(
-      requestedFileName
+  const jsonFiles = fs
+    .readdirSync(importsDir)
+    .filter(
+      (file) =>
+        file.endsWith(".json") &&
+        !file.includes("generated")
     );
 
-    if (counters.failed > 0) {
-      process.exitCode = 1;
-    }
-
+  if (jsonFiles.length === 0) {
+    console.log("No JSON files found.");
     return;
   }
 
-  const jsonFiles = fs
-    .readdirSync(importsDirectory)
-    .filter((file) => file.toLowerCase().endsWith(".json"))
-    .sort();
+  console.log(`Found ${jsonFiles.length} import files.\n`);
 
-  if (jsonFiles.length === 0) {
-    throw new Error(
-      "No JSON files found in the imports folder."
-    );
-  }
-
-  const totals = {
-    imported: 0,
-    updated: 0,
-    failed: 0,
-    geometryRows: 0,
-    componentRows: 0,
-  };
-
-  for (const jsonFile of jsonFiles) {
-    console.log("\n========================================");
-    console.log(`Importing ${jsonFile}`);
-    console.log("========================================\n");
-
+  for (const file of jsonFiles) {
     try {
-      const counters = await importFile(jsonFile);
-
-      totals.imported += counters.imported;
-      totals.updated += counters.updated;
-      totals.failed += counters.failed;
-      totals.geometryRows += counters.geometryRows;
-      totals.componentRows += counters.componentRows;
-    } catch (error) {
-      totals.failed += 1;
-
-      console.error(
-        `Could not import ${jsonFile}: ${error.message}`
-      );
+      await importFile(file);
+    } catch (err) {
+      console.error(`Failed importing ${file}`);
+      console.error(err.message);
     }
   }
 
-  console.log("\n========================================");
-  console.log("ALL IMPORTS FINISHED");
-  console.log("========================================");
-  console.log(`New versions: ${totals.imported}`);
-  console.log(`Updated versions: ${totals.updated}`);
-  console.log(`Failed versions: ${totals.failed}`);
-  console.log(
-    `Geometry rows processed: ${totals.geometryRows}`
-  );
-  console.log(
-    `Components processed: ${totals.componentRows}`
-  );
-
-  if (totals.failed > 0) {
-    process.exitCode = 1;
-  }
+  console.log("\n=================================");
+  console.log("ALL IMPORTS COMPLETE");
+  console.log("=================================");
 }
 
 main().catch((error) => {
-  console.error("\nImport failed:");
   console.error(error);
-
   process.exitCode = 1;
 });

@@ -1,0 +1,51 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/freeride/spindrift-al-dual-crown/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Spindrift AL Dual Crown",
+      "slug": "spindrift-al-dual-crown",
+      "category": "Freeride",
+      "description": "Park mode on! With our Dual Crown Edition and the 200mm dual-crown fork, you’re ready for the wildest descents. Whether it’s big drops or massive jumps, tricks and style are the order of the day. With the agile Mix-wheel setup and the 7-speed DH drivetrain or single-speed setup, there are no limits to your creativity. Double Crown – Double Fun",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "",
+          "currency": "USD",
+          "msrp": 3299,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 200,
+          "rear_travel_mm": 180,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2024/08/11080550/PROPAIN-Spindrift-5-AL-midnight-blue_Fox_002_WATERMELON-STUDIOS.png",
+          "source_name": "Propain",
+          "source_record_id": "spindriftaldc-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/freeride/spindrift-al-dual-crown/",
+          "status": "active",
+          "available_sizes": [
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [],
+          "components": []
+        }
+      ]
+    }
+  ]
+}

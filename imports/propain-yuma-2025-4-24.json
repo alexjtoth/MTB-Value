@@ -1,0 +1,49 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/kids/yuma-4-24/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Yuma",
+      "slug": "yuma",
+      "category": "Kids",
+      "description": "Your entry into the world of mountain biking, your first real mountain bike. With 130 mm of travel and top-quality components, it’s the perfect companion for your next adventure, whether in the woods behind your house or at the bike park. Grab your Yuma 4 – 24 and experience an unforgettable time.",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "4 - 24",
+          "currency": "USD",
+          "msrp": 1999,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 130,
+          "rear_travel_mm": 130,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2025/04/07055122/PROPAIN-Yuma-4-24-cosmo-black-Front.png",
+          "source_name": "Propain",
+          "source_record_id": "a002107-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/kids/yuma-4-24/",
+          "status": "active",
+          "available_sizes": [
+            "OneSize"
+          ],
+          "geometry": [],
+          "components": []
+        }
+      ]
+    }
+  ]
+}

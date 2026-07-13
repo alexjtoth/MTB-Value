@@ -1,0 +1,180 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/trail/hugene-cf/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Hugene",
+      "slug": "hugene",
+      "category": "Trail",
+      "description": "The short-travel trail ripper – our nimble fun machine. The Hugene is all about a purposeful “travel diet” – ultra-agile and poppy, it carves playful lines into otherwise forgettable trails, holds its own when things get rough, and lets you cover ground with serious efficiency. Because let’s be honest – sometimes, that’s all it takes for maximum stoke!",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "3 CF",
+          "currency": "USD",
+          "msrp": 2999,
+          "frame_material": "Carbon",
+          "wheel_size": null,
+          "front_travel_mm": 140,
+          "rear_travel_mm": 130,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2025/07/16011856/PROPAIN-Hugene-3-CF-MY25-aussie-dust-factory-front-FalchPhotography.png",
+          "source_name": "Propain",
+          "source_record_id": "a002473-landingpage-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/trail/hugene-cf/",
+          "status": "active",
+          "available_sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [],
+          "components": [
+            {
+              "category": "Fork",
+              "component_role": "Fork",
+              "brand": "RockShox",
+              "name": "Pike Select",
+              "raw_name": "RockShox Pike Select 140 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "travel_mm": 140
+              }
+            },
+            {
+              "category": "Shock",
+              "component_role": "Shock",
+              "brand": "RockShox",
+              "name": "Deluxe Select Lin XL",
+              "raw_name": "RockShox Deluxe Select Lin XL",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Drivetrain",
+              "component_role": "Drivetrain",
+              "brand": "SRAM",
+              "name": "Eagle 70 Transmission",
+              "raw_name": "SRAM Eagle 70 Transmission (1x12)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "chainrings": 1,
+                "speeds": 12
+              }
+            },
+            {
+              "category": "Brakes",
+              "component_role": "Brakes",
+              "brand": "SRAM",
+              "name": "DB8",
+              "raw_name": "SRAM DB8 200 mm / 200 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "front_rotor_mm": 200,
+                "rear_rotor_mm": 200
+              }
+            },
+            {
+              "category": "Wheels",
+              "component_role": "Wheels",
+              "brand": "DT Swiss",
+              "name": "M 1900",
+              "raw_name": "DT Swiss M 1900",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Tires",
+              "component_role": "Tires",
+              "brand": "Schwalbe",
+              "name": "Albert Trail Pro Radial",
+              "raw_name": "Schwalbe Albert Trail Pro Radial",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Stem",
+              "component_role": "Stem",
+              "brand": "Sixpack",
+              "name": "Vertic 50 (Classic internal cable routing)",
+              "raw_name": "Sixpack Vertic 50 (Classic internal cable routing)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Handlebar",
+              "component_role": "Handlebar",
+              "brand": "Sixpack",
+              "name": "Millenium 805 30 mm Rise",
+              "raw_name": "Sixpack Millenium 805 30 mm Rise",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "rise_mm": 30
+              }
+            },
+            {
+              "category": "Grips",
+              "component_role": "Grips",
+              "brand": "Sixpack",
+              "name": "S-Trix",
+              "raw_name": "Sixpack S-Trix",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Seatpost",
+              "component_role": "Seatpost",
+              "brand": "OneUp",
+              "name": "V3 (S = 120 mm, M = 150 mm, L = 180 mm, XL = 210 mm)",
+              "raw_name": "OneUp V3 (S = 120 mm, M = 150 mm, L = 180 mm, XL = 210 mm)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "travel_options_mm": [
+                  120,
+                  150,
+                  180,
+                  210
+                ]
+              }
+            },
+            {
+              "category": "Saddle",
+              "component_role": "Saddle",
+              "brand": "Sixpack",
+              "name": "Kamikaze",
+              "raw_name": "Sixpack Kamikaze",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

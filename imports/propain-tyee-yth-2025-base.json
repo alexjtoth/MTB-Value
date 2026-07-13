@@ -1,0 +1,50 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/youth/tyee-yth/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Tyee YTH",
+      "slug": "tyee-yth",
+      "category": "Enduro, Youth",
+      "description": "The Tyee YTH is the perfect choice for any young rider ready to conquer challenging trails. With plenty of travel and components specially optimized for size and weight, it ensures safety and fun on any terrain. Whether you're tackling steep downhills or long climbs, the Tyee YTH delivers pure performance and maximum enjoyment.",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "",
+          "currency": "USD",
+          "msrp": 2999,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 160,
+          "rear_travel_mm": 160,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2025/04/07062610/PROPAIN-Tyee-YTH-raw-Front.png",
+          "source_name": "Propain",
+          "source_record_id": "a002120-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/youth/tyee-yth/",
+          "status": "active",
+          "available_sizes": [
+            "XS",
+            "S"
+          ],
+          "geometry": [],
+          "components": []
+        }
+      ]
+    }
+  ]
+}

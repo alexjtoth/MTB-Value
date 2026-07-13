@@ -1,0 +1,228 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/enduro/ekano-2-cf/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "EKANO",
+      "slug": "ekano",
+      "category": "Enduro",
+      "description": "The EKANO 2 CF with SRAM Eagle Powertrain shifts your comfort zone through groundbreaking technology, intuitive operation, and a balanced geometry.",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "2 CF",
+          "currency": "USD",
+          "msrp": 7299,
+          "frame_material": "Carbon",
+          "wheel_size": null,
+          "front_travel_mm": 180,
+          "rear_travel_mm": 170,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2025/03/04092159/PROPAIN-Ekano-2-CF-mighty-mango_002_cwww.Falch-Photography.com_.png",
+          "source_name": "Propain",
+          "source_record_id": "ekano2cf-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/enduro/ekano-2-cf/",
+          "status": "active",
+          "available_sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [],
+          "components": [
+            {
+              "category": "Description",
+              "component_role": "Description",
+              "brand": "Ekano",
+              "name": "2 CF - Mix Wheel",
+              "raw_name": "Ekano 2 CF - Mix Wheel",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Frame",
+              "component_role": "Frame",
+              "brand": "Blend",
+              "name": "Carbon - Raw Matte Finish",
+              "raw_name": "Blend Carbon - Raw Matte Finish",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Fork",
+              "component_role": "Fork",
+              "brand": "RockShox",
+              "name": "ZEB Ultimate",
+              "raw_name": "RockShox ZEB Ultimate",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Shock",
+              "component_role": "Shock",
+              "brand": "RockShox",
+              "name": "Vivid Ultimate",
+              "raw_name": "RockShox Vivid Ultimate",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Brakes",
+              "component_role": "Brakes",
+              "brand": "Maven",
+              "name": "Silver",
+              "raw_name": "Maven Silver",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Wheels",
+              "component_role": "Wheels",
+              "brand": "DT Swiss",
+              "name": "HX1700 27.5\"/29\"",
+              "raw_name": "DT Swiss HX1700 27.5\"/29\"",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Driveunit",
+              "component_role": "Driveunit",
+              "brand": "SRAM",
+              "name": "Eagle Powertrain",
+              "raw_name": "SRAM Eagle Powertrain",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Drivetrain",
+              "component_role": "Drivetrain",
+              "brand": "SRAM",
+              "name": "X0 Eagle Transimission",
+              "raw_name": "SRAM X0 Eagle Transimission (1x12)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "chainrings": 1,
+                "speeds": 12
+              }
+            },
+            {
+              "category": "Trigger",
+              "component_role": "Trigger",
+              "brand": "SRAM",
+              "name": "AXS Pod Ultimate",
+              "raw_name": "SRAM AXS Pod Ultimate",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Rear derailleur",
+              "component_role": "Rear derailleur",
+              "brand": "SRAM",
+              "name": "X0 Eagle Transmission",
+              "raw_name": "SRAM X0 Eagle Transmission",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Cassette",
+              "component_role": "Cassette",
+              "brand": "SRAM",
+              "name": "X0 Eagle Transmission",
+              "raw_name": "SRAM X0 Eagle Transmission",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Crank",
+              "component_role": "Crank",
+              "brand": "SRAM",
+              "name": "X0 Eagle Transmission",
+              "raw_name": "SRAM X0 Eagle Transmission",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Handlebar",
+              "component_role": "Handlebar",
+              "brand": "One",
+              "name": "Up Carbon",
+              "raw_name": "One Up Carbon",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "material": "Carbon"
+              }
+            },
+            {
+              "category": "Stem",
+              "component_role": "Stem",
+              "brand": "Sixpack",
+              "name": "Millenium 35 ICR",
+              "raw_name": "SIXPACK Millenium 35 ICR",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Seatpost",
+              "component_role": "Seatpost",
+              "brand": "RockShox",
+              "name": "Reverb AXS",
+              "raw_name": "RockShox Reverb AXS",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Saddle",
+              "component_role": "Saddle",
+              "brand": "Sixpack",
+              "name": "Kamikaze",
+              "raw_name": "SIXPACK Kamikaze",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Tires",
+              "component_role": "Tires",
+              "brand": "Maxxis",
+              "name": "Assegai / DHR",
+              "raw_name": "Maxxis Assegai / DHR",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

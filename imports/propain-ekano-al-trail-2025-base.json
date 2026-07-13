@@ -1,0 +1,101 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/trail/ekano-al-trail/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Ekano AL Trail",
+      "slug": "ekano-al-trail",
+      "category": "Trail",
+      "description": null,
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "",
+          "currency": "USD",
+          "msrp": 5599,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 160,
+          "rear_travel_mm": 150,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2026/04/15110054/PROPAIN-Ekano-3-AL-trail-electric-teal-002-WATERMELON-STUDIOS.png",
+          "source_name": "Propain",
+          "source_record_id": "ekano-al-trail-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/trail/ekano-al-trail/",
+          "status": "active",
+          "available_sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [
+            {
+              "size": "S",
+              "reach_mm": 439,
+              "stack_mm": 631,
+              "wheelbase_mm": 29,
+              "chainstay_mm": 29,
+              "bb_drop_mm": 29,
+              "head_tube_angle": 639,
+              "seat_tube_angle": 784,
+              "seat_tube_mm": 410,
+              "head_tube_mm": 110
+            },
+            {
+              "size": "M",
+              "reach_mm": 454,
+              "stack_mm": 636,
+              "wheelbase_mm": 29,
+              "chainstay_mm": 29,
+              "bb_drop_mm": 29,
+              "head_tube_angle": 639,
+              "seat_tube_angle": 784,
+              "seat_tube_mm": 430,
+              "head_tube_mm": 115
+            },
+            {
+              "size": "L",
+              "reach_mm": 479,
+              "stack_mm": 639,
+              "wheelbase_mm": 29,
+              "chainstay_mm": 29,
+              "bb_drop_mm": 29,
+              "head_tube_angle": 639,
+              "seat_tube_angle": 784,
+              "seat_tube_mm": 455,
+              "head_tube_mm": 120
+            },
+            {
+              "size": "XL",
+              "reach_mm": 504,
+              "stack_mm": 649,
+              "wheelbase_mm": 29,
+              "chainstay_mm": 29,
+              "bb_drop_mm": 29,
+              "head_tube_angle": 639,
+              "seat_tube_angle": 784,
+              "seat_tube_mm": 480,
+              "head_tube_mm": 130
+            }
+          ],
+          "components": []
+        }
+      ]
+    }
+  ]
+}

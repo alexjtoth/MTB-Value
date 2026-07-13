@@ -1,0 +1,49 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/kids/dreckspatz/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Dreckspatz",
+      "slug": "dreckspatz",
+      "category": "Kids",
+      "description": "The Dreckspatz 3 was designed for flowing trails and pump tracks - ready for the school of mountain biking. Here the bike displays the strengths of a hardtail with lower weight and easy pedaling that guarantees the most fun experience for the kids. Sixpack 1st Ride components were developed just for kids that we pair with selected components from the best brand along with carefully engineered geometry gives kids a fun and easy ride. In our experience, the 20\" wheels offer the best combination between easy handling and low rolling resistance for the Dreckspatz 3 age group. Welcome to the School of Mountain Biking. The Dreckspatz 3 is recommended for kids between 110 and 135 cm (5 to 8 years).",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "3",
+          "currency": "USD",
+          "msrp": null,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 80,
+          "rear_travel_mm": null,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2024/07/18150059/PROPAIN-Dreckspatz-petrol-dark-MY2023-Front-transparent.png",
+          "source_name": "Propain",
+          "source_record_id": "dreckspatz-3-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/kids/dreckspatz/",
+          "status": "active",
+          "available_sizes": [
+            "OneSize"
+          ],
+          "geometry": [],
+          "components": []
+        }
+      ]
+    }
+  ]
+}

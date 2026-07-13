@@ -1,0 +1,262 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/trail/sresh-sl/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Sresh SL",
+      "slug": "sresh-sl",
+      "category": "Trail",
+      "description": "Super Light. Super Legs. Silence. Our \"SL\" stands for a number of things – all with the same goal: you and your bike in nature and the feeling of the perfect ride. First and foremost, the Sresh SL was developed as a pure trail rocket. Light, agile, balanced, and with a tuned PRO10 chassis that always delivers maximum grip and support. 350 watts of power? It's hard to believe that this bike really contains that much power. Integrated with the utmost subtlety, the innovative drive system is practically unnoticeable visually and acoustically. But it offers you more. More range, more crazy climbs, more remote trails – and yet it's still a mountain bike. FAST BY NATURE – DRIVEN BY INSTINCT &nbsp; &nbsp;",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "",
+          "currency": "USD",
+          "msrp": 5799,
+          "frame_material": "Carbon",
+          "wheel_size": null,
+          "front_travel_mm": 160,
+          "rear_travel_mm": 150,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2025/06/26080225/PROPAIN-Sresh-SL-MY25-firetruck-red-swedish-gold-Front-ret.png",
+          "source_name": "Propain",
+          "source_record_id": "sreshsl-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/trail/sresh-sl/",
+          "status": "active",
+          "available_sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [
+            {
+              "size": "S",
+              "reach_mm": 428,
+              "stack_mm": 616,
+              "wheelbase_mm": 1213,
+              "chainstay_mm": 452,
+              "bb_drop_mm": 23,
+              "head_tube_angle": 64.3,
+              "seat_tube_angle": 77.8,
+              "seat_tube_mm": 390,
+              "head_tube_mm": 100
+            },
+            {
+              "size": "M",
+              "reach_mm": 453,
+              "stack_mm": 625,
+              "wheelbase_mm": 1243,
+              "chainstay_mm": 452,
+              "bb_drop_mm": 23,
+              "head_tube_angle": 64.3,
+              "seat_tube_angle": 77.8,
+              "seat_tube_mm": 410,
+              "head_tube_mm": 110
+            },
+            {
+              "size": "L",
+              "reach_mm": 478,
+              "stack_mm": 634,
+              "wheelbase_mm": 1272,
+              "chainstay_mm": 452,
+              "bb_drop_mm": 23,
+              "head_tube_angle": 64.3,
+              "seat_tube_angle": 77.8,
+              "seat_tube_mm": 430,
+              "head_tube_mm": 120
+            },
+            {
+              "size": "XL",
+              "reach_mm": 503,
+              "stack_mm": 643,
+              "wheelbase_mm": 1301,
+              "chainstay_mm": 452,
+              "bb_drop_mm": 23,
+              "head_tube_angle": 64.3,
+              "seat_tube_angle": 77.8,
+              "seat_tube_mm": 460,
+              "head_tube_mm": 130
+            },
+            {
+              "size": "GRÖßE S",
+              "reach_mm": 423,
+              "stack_mm": 619,
+              "wheelbase_mm": 1212,
+              "chainstay_mm": 450,
+              "bb_drop_mm": 29,
+              "head_tube_angle": 63.8,
+              "seat_tube_angle": 77.3,
+              "seat_tube_mm": 390,
+              "head_tube_mm": 100
+            }
+          ],
+          "components": [
+            {
+              "category": "Drive unit",
+              "component_role": "Drive unit",
+              "brand": "TQ-HPR60",
+              "name": "TQ-HPR60",
+              "raw_name": "TQ-HPR60",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Battery",
+              "component_role": "Battery",
+              "brand": "TQ",
+              "name": "Battery (S = 360 Wh, M/L/XL = 580 Wh)",
+              "raw_name": "TQ Battery (S = 360 Wh, M/L/XL = 580 Wh)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Fork",
+              "component_role": "Fork",
+              "brand": "Marzocchi",
+              "name": "Bomber Z1",
+              "raw_name": "Marzocchi Bomber Z1 160 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "travel_mm": 160
+              }
+            },
+            {
+              "category": "Shock",
+              "component_role": "Shock",
+              "brand": "Marzocchi",
+              "name": "Bomber Air",
+              "raw_name": "Marzocchi Bomber Air",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Drivetrain",
+              "component_role": "Drivetrain",
+              "brand": "SRAM",
+              "name": "Eagle 70 Transmission",
+              "raw_name": "SRAM Eagle 70 Transmission (1x12)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "chainrings": 1,
+                "speeds": 12
+              }
+            },
+            {
+              "category": "Brakes",
+              "component_role": "Brakes",
+              "brand": "Magura",
+              "name": "MT5",
+              "raw_name": "Magura MT5 203 mm / 203 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "front_rotor_mm": 203,
+                "rear_rotor_mm": 203
+              }
+            },
+            {
+              "category": "Wheels",
+              "component_role": "Wheels",
+              "brand": "Crankbrothers",
+              "name": "Synthesis E-MTB Alloy",
+              "raw_name": "Crankbrothers Synthesis E-MTB Alloy",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Tires",
+              "component_role": "Tires",
+              "brand": "Maxxis",
+              "name": "Assegai/DHR II",
+              "raw_name": "Maxxis Assegai/DHR II",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Stem",
+              "component_role": "Stem",
+              "brand": "Sixpack",
+              "name": "Millenium 35",
+              "raw_name": "Sixpack Millenium 35",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Handlebar",
+              "component_role": "Handlebar",
+              "brand": "OneUp",
+              "name": "Carbon 35 mm Rise",
+              "raw_name": "OneUp Carbon 35 mm Rise",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "rise_mm": 35,
+                "material": "Carbon"
+              }
+            },
+            {
+              "category": "Grips",
+              "component_role": "Grips",
+              "brand": "Ergon",
+              "name": "GDH Team",
+              "raw_name": "Ergon GDH Team",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Seatpost",
+              "component_role": "Seatpost",
+              "brand": "OneUp",
+              "name": "V3 (S = 120 mm, M = 150 mm, L = 180 mm, XL = 210 mm)",
+              "raw_name": "OneUp V3 (S = 120 mm, M = 150 mm, L = 180 mm, XL = 210 mm)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "travel_options_mm": [
+                  120,
+                  150,
+                  180,
+                  210
+                ]
+              }
+            },
+            {
+              "category": "Saddle",
+              "component_role": "Saddle",
+              "brand": "Ergon",
+              "name": "SM Enduro Comp",
+              "raw_name": "Ergon SM Enduro Comp",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

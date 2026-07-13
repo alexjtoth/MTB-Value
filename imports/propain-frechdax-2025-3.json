@@ -1,0 +1,49 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/kids/frechdax/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Frechdax",
+      "slug": "frechdax",
+      "category": "Kids",
+      "description": "It's really amazing what kids today are capable of on two wheels at an ever-younger age. For a long time, the limiting factor in mountain biking was the equipment. But if specially designed technology is already available for the youngest, safety, control and comfort is the foundation to really bring out talent. The Frechdax 3 offers exactly that and opens up the field of full suspension mountain bikes for the next generation. Sixpack 1st Ride components, developed precisely based on the needs of kids, in combination with selected products from leading manufacturers and the smart geometry of the lightweight aluminum frame make the Frechdax 3 what it is: The tool for Young Shredders, that sets no limits! The Frechdax 3 is recommended for children between 110 and 135 cm (5 to 8 years).",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "3",
+          "currency": "USD",
+          "msrp": 1119,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 80,
+          "rear_travel_mm": 90,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2024/07/18150246/PROPAIN-Frechdax-raw-MY2023-Front-transparent.png",
+          "source_name": "Propain",
+          "source_record_id": "frechdax-3-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/kids/frechdax/",
+          "status": "active",
+          "available_sizes": [
+            "OneSize"
+          ],
+          "geometry": [],
+          "components": []
+        }
+      ]
+    }
+  ]
+}

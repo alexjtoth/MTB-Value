@@ -1,0 +1,239 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/trail/tyee-al-trail/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Tyee",
+      "slug": "tyee",
+      "category": "Trail",
+      "description": "Your versatile trail bike for home trails and alpine adventures - efficient on climbs, confident on descents.",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "6.1 AL Trail - Versatile Aluminum Trail Bike",
+          "currency": "USD",
+          "msrp": 2599,
+          "frame_material": "Aluminum",
+          "wheel_size": null,
+          "front_travel_mm": 160,
+          "rear_travel_mm": 145,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2026/02/18055735/PROPAIN-Tyee-6.1-AL-Trail-MY26-polar-blue-front-Falch-Photography-scaled.png",
+          "source_name": "Propain",
+          "source_record_id": "tyee-6-1-al-trail-versatile-aluminum-trail-bike-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/trail/tyee-al-trail/",
+          "status": "active",
+          "available_sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [
+            {
+              "size": "XS",
+              "reach_mm": 399,
+              "stack_mm": 580,
+              "wheelbase_mm": 1148,
+              "chainstay_mm": 430,
+              "bb_drop_mm": 14,
+              "head_tube_angle": 64,
+              "seat_tube_angle": 77.2,
+              "seat_tube_mm": 380,
+              "head_tube_mm": 90
+            },
+            {
+              "size": "S",
+              "reach_mm": 424,
+              "stack_mm": 598,
+              "wheelbase_mm": 1182,
+              "chainstay_mm": 430,
+              "bb_drop_mm": 14,
+              "head_tube_angle": 64,
+              "seat_tube_angle": 77.2,
+              "seat_tube_mm": 400,
+              "head_tube_mm": 110
+            },
+            {
+              "size": "M",
+              "reach_mm": 450,
+              "stack_mm": 625,
+              "wheelbase_mm": 1233,
+              "chainstay_mm": 446,
+              "bb_drop_mm": 30,
+              "head_tube_angle": 642,
+              "seat_tube_angle": 77,
+              "seat_tube_mm": 425,
+              "head_tube_mm": 105
+            },
+            {
+              "size": "L",
+              "reach_mm": 475,
+              "stack_mm": 634,
+              "wheelbase_mm": 1263,
+              "chainstay_mm": 446,
+              "bb_drop_mm": 30,
+              "head_tube_angle": 642,
+              "seat_tube_angle": 77,
+              "seat_tube_mm": 450,
+              "head_tube_mm": 115
+            },
+            {
+              "size": "XL",
+              "reach_mm": 500,
+              "stack_mm": 644,
+              "wheelbase_mm": 1292,
+              "chainstay_mm": 446,
+              "bb_drop_mm": 30,
+              "head_tube_angle": 642,
+              "seat_tube_angle": 77,
+              "seat_tube_mm": 480,
+              "head_tube_mm": 125
+            }
+          ],
+          "components": [
+            {
+              "category": "Fork",
+              "component_role": "Fork",
+              "brand": "RockShox",
+              "name": "Psylo Gold RC",
+              "raw_name": "RockShox Psylo Gold RC 160 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "travel_mm": 160
+              }
+            },
+            {
+              "category": "Shock",
+              "component_role": "Shock",
+              "brand": "RockShox",
+              "name": "Deluxe Select Linear XL",
+              "raw_name": "RockShox Deluxe Select Linear XL",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Drivetrain",
+              "component_role": "Drivetrain",
+              "brand": "SRAM",
+              "name": "Eagle 70 Mechanical",
+              "raw_name": "SRAM Eagle 70 Mechanical",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Brakes",
+              "component_role": "Brakes",
+              "brand": "SRAM",
+              "name": "DB8",
+              "raw_name": "SRAM DB8",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Wheels",
+              "component_role": "Wheels",
+              "brand": "DT Swiss",
+              "name": "E 1900",
+              "raw_name": "DT Swiss E 1900",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Tires",
+              "component_role": "Tires",
+              "brand": "Albert",
+              "name": "Trail Radial",
+              "raw_name": "Albert Trail Radial",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Stem",
+              "component_role": "Stem",
+              "brand": "Acros",
+              "name": "& Sixpack Vertic 50 mm",
+              "raw_name": "Acros & Sixpack Vertic 50 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Handlebar",
+              "component_role": "Handlebar",
+              "brand": "Sixpack",
+              "name": "Millenium 30 mm Rise",
+              "raw_name": "Sixpack Millenium 30 mm Rise",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "rise_mm": 30
+              }
+            },
+            {
+              "category": "Grips",
+              "component_role": "Grips",
+              "brand": "Sixpack",
+              "name": "S-Trix",
+              "raw_name": "Sixpack S-Trix",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Seatpost",
+              "component_role": "Seatpost",
+              "brand": "OneUp",
+              "name": "V3",
+              "raw_name": "OneUp V3",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Saddle",
+              "component_role": "Saddle",
+              "brand": "Ergon",
+              "name": "SM Enduro NEO",
+              "raw_name": "Ergon SM Enduro NEO",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Add Ons",
+              "component_role": "Add Ons",
+              "brand": "Tubes",
+              "name": "Tubes",
+              "raw_name": "Tubes",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

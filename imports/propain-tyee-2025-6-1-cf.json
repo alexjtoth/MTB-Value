@@ -1,0 +1,242 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/enduro/tyee-cf/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Tyee",
+      "slug": "tyee",
+      "category": "Enduro",
+      "description": "Whether it’s an after-work ride, a bike park session, or a multi-day enduro race: the Tyee CF Enduro feels right at home on any terrain. It’s agile and efficient, while staying calm and composed when the trail gets fast and rough. The geometry and kinematics strike the perfect balance between climbing efficiency and downhill capability. Tons of travel, without ever feeling sluggish. Maximum grip, total control – thanks to a perfect mix of stiffness and flex.",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "6.1 CF",
+          "currency": "USD",
+          "msrp": 3499,
+          "frame_material": "Carbon",
+          "wheel_size": null,
+          "front_travel_mm": 170,
+          "rear_travel_mm": 160,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2025/05/14005508/PROPAIN-Tyee-6-1-CF-pigeon-blue-bomber-Front.png",
+          "source_name": "Propain",
+          "source_record_id": "tyee61cf-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/enduro/tyee-cf/",
+          "status": "active",
+          "available_sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [
+            {
+              "size": "XS",
+              "reach_mm": 399,
+              "stack_mm": 580,
+              "wheelbase_mm": 1151,
+              "chainstay_mm": 430,
+              "bb_drop_mm": 7,
+              "head_tube_angle": 63.9,
+              "seat_tube_angle": 77.3,
+              "seat_tube_mm": 380,
+              "head_tube_mm": 90
+            },
+            {
+              "size": "S",
+              "reach_mm": 424,
+              "stack_mm": 598,
+              "wheelbase_mm": 1184,
+              "chainstay_mm": 430,
+              "bb_drop_mm": 7,
+              "head_tube_angle": 63.9,
+              "seat_tube_angle": 77.3,
+              "seat_tube_mm": 400,
+              "head_tube_mm": 110
+            },
+            {
+              "size": "M",
+              "reach_mm": 449,
+              "stack_mm": 626,
+              "wheelbase_mm": 1237,
+              "chainstay_mm": 445,
+              "bb_drop_mm": 22,
+              "head_tube_angle": 63.9,
+              "seat_tube_angle": 76.9,
+              "seat_tube_mm": 425,
+              "head_tube_mm": 105
+            },
+            {
+              "size": "L",
+              "reach_mm": 473,
+              "stack_mm": 635,
+              "wheelbase_mm": 1266,
+              "chainstay_mm": 445,
+              "bb_drop_mm": 22,
+              "head_tube_angle": 63.9,
+              "seat_tube_angle": 76.9,
+              "seat_tube_mm": 450,
+              "head_tube_mm": 115
+            },
+            {
+              "size": "XL",
+              "reach_mm": 499,
+              "stack_mm": 646,
+              "wheelbase_mm": 1296,
+              "chainstay_mm": 445,
+              "bb_drop_mm": 22,
+              "head_tube_angle": 63.9,
+              "seat_tube_angle": 76.9,
+              "seat_tube_mm": 480,
+              "head_tube_mm": 125
+            }
+          ],
+          "components": [
+            {
+              "category": "Fork",
+              "component_role": "Fork",
+              "brand": "Marzocchi",
+              "name": "Bomber Z",
+              "raw_name": "Marzocchi Bomber Z 170 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "travel_mm": 170
+              }
+            },
+            {
+              "category": "Shock",
+              "component_role": "Shock",
+              "brand": "Marzocchi",
+              "name": "Bomber Coil",
+              "raw_name": "Marzocchi Bomber Coil",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Drivetrain",
+              "component_role": "Drivetrain",
+              "brand": "SRAM",
+              "name": "Eagle 70 Transmission",
+              "raw_name": "SRAM Eagle 70 Transmission (1x12)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "chainrings": 1,
+                "speeds": 12
+              }
+            },
+            {
+              "category": "Brakes",
+              "component_role": "Brakes",
+              "brand": "Magura",
+              "name": "MT5",
+              "raw_name": "Magura MT5 203 mm / 203 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "front_rotor_mm": 203,
+                "rear_rotor_mm": 203
+              }
+            },
+            {
+              "category": "Wheels",
+              "component_role": "Wheels",
+              "brand": "Crankbrothers",
+              "name": "Synthesis Enduro Alloy",
+              "raw_name": "Crankbrother Synthesis Enduro Alloy",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Tires",
+              "component_role": "Tires",
+              "brand": "Maxxis",
+              "name": "Assegai/ DHR II",
+              "raw_name": "Maxxis Assegai/ DHR II",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Stem",
+              "component_role": "Stem",
+              "brand": "Sixpack",
+              "name": "Millenium 35",
+              "raw_name": "Sixpack Millenium 35",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Handlebar",
+              "component_role": "Handlebar",
+              "brand": "OneUp",
+              "name": "Carbon 20 mm Rise",
+              "raw_name": "OneUp Carbon 20 mm Rise",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "rise_mm": 20,
+                "material": "Carbon"
+              }
+            },
+            {
+              "category": "Grips",
+              "component_role": "Grips",
+              "brand": "Ergon",
+              "name": "GDH Team",
+              "raw_name": "Ergon GDH Team",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Seatpost",
+              "component_role": "Seatpost",
+              "brand": "OneUp",
+              "name": "V3 (M = 150mm, L = 180mm, XL = 210mm)",
+              "raw_name": "OneUp V3 (M = 150mm, L = 180mm, XL = 210mm)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "travel_options_mm": [
+                  150,
+                  180,
+                  210
+                ]
+              }
+            },
+            {
+              "category": "Saddle",
+              "component_role": "Saddle",
+              "brand": "Ergon",
+              "name": "SM Enduro Comp",
+              "raw_name": "Ergon SM Enduro Comp",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

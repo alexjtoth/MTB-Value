@@ -1,0 +1,196 @@
+{
+  "source_name": "Propain",
+  "source_url": "https://www.propain-bikes.com/us/product/bikes/gravel/terrel-cf/",
+  "brand": {
+    "name": "Propain",
+    "slug": "propain",
+    "country": "Germany",
+    "website_url": "https://www.propain-bikes.com"
+  },
+  "models": [
+    {
+      "name": "Terrel",
+      "slug": "terrel",
+      "category": "Gravel",
+      "description": "What does gravel mean to you? Discovering new routes, being out in nature, riding through forests and along endless gravel tracks. Simply heading out, covering distance – from bikepacking adventures to those race moments where every second counts. One bike for everything gravel stands for. The Terrel CF adapts to you – wherever the ride takes you. With the PROPAIN configurator, you can build your bike exactly the way you want it: light and fast for maximum efficiency, or comfortable and composed for more confidence on narrow trails. From the fork to the drivetrain, you decide what suits your style. Make the Terrel CF yours.",
+      "introduced_year": null,
+      "discontinued_year": null,
+      "versions": [
+        {
+          "year": 2025,
+          "trim_name": "CF",
+          "currency": "USD",
+          "msrp": 2999,
+          "frame_material": "Carbon",
+          "wheel_size": null,
+          "front_travel_mm": null,
+          "rear_travel_mm": null,
+          "weight_kg": null,
+          "weight_lbs": null,
+          "fork": null,
+          "rear_shock": null,
+          "drivetrain": null,
+          "brakes": null,
+          "wheels": null,
+          "image_url": "https://media-na.propain-bikes.com/wp-content/uploads/sites/4/2024/04/13052154/PROPAIN-Terrel-CF-good-thyme-Force-Front.png",
+          "source_name": "Propain",
+          "source_record_id": "terrelcf-2025",
+          "source_url": "https://www.propain-bikes.com/us/product/bikes/gravel/terrel-cf/",
+          "status": "active",
+          "available_sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "geometry": [],
+          "components": [
+            {
+              "category": "Fork",
+              "component_role": "Fork",
+              "brand": "Terrel",
+              "name": "CF",
+              "raw_name": "Terrel CF",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Groupset",
+              "component_role": "Groupset",
+              "brand": "SRAM",
+              "name": "Apex Mechanical (1x12)",
+              "raw_name": "SRAM Apex Mechanical (1x12)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Trigger",
+              "component_role": "Trigger",
+              "brand": "SRAM",
+              "name": "Apex",
+              "raw_name": "SRAM Apex",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Brakes",
+              "component_role": "Brakes",
+              "brand": "SRAM",
+              "name": "Centerline 160 mm",
+              "raw_name": "SRAM Centerline 160 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {
+                "front_rotor_mm": 160
+              }
+            },
+            {
+              "category": "Cranks",
+              "component_role": "Cranks",
+              "brand": "SRAM",
+              "name": "Apex",
+              "raw_name": "SRAM Apex",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Derailleur",
+              "component_role": "Derailleur",
+              "brand": "SRAM",
+              "name": "Apex (1x12)",
+              "raw_name": "SRAM Apex (1x12)",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Cassette",
+              "component_role": "Cassette",
+              "brand": "SRAM",
+              "name": "XG-1275 12-speed 10-52T",
+              "raw_name": "SRAM XG-1275 12-speed 10-52T",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Chain",
+              "component_role": "Chain",
+              "brand": "SRAM",
+              "name": "Eagle 12-speed",
+              "raw_name": "SRAM Eagle 12-speed",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Handlebar",
+              "component_role": "Handlebar",
+              "brand": "Zipp",
+              "name": "Service Course 70 XPLR",
+              "raw_name": "Zipp Service Course 70 XPLR",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Stem",
+              "component_role": "Stem",
+              "brand": "Zipp",
+              "name": "Service Course SL",
+              "raw_name": "Zipp Service Course SL",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Seatpost",
+              "component_role": "Seatpost",
+              "brand": "Zipp",
+              "name": "Service Course",
+              "raw_name": "Zipp Service Course",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Saddle",
+              "component_role": "Saddle",
+              "brand": "Selle",
+              "name": "Italia Model X Superflow",
+              "raw_name": "Selle Italia Model X Superflow",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Wheels",
+              "component_role": "Wheels",
+              "brand": "DT Swiss",
+              "name": "G 1800 Spline",
+              "raw_name": "DT Swiss G 1800 Spline",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            },
+            {
+              "category": "Tires",
+              "component_role": "Tires",
+              "brand": "Schwalbe",
+              "name": "G-One Overland 50 mm",
+              "raw_name": "Schwalbe G-One Overland 50 mm",
+              "model_year": 0,
+              "msrp": null,
+              "attributes": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
